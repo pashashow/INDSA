@@ -18,5 +18,5 @@ module.exports = function(app) {
         .delete(dancers.delete);
 
     // Finish by binding the article middleware
-    app.param('dancerId', dancers.dancerById);
+//    app.param('dancerId', dancers.dancerById);
 };
