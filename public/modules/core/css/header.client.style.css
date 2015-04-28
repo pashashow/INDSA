@@ -1,18 +1,19 @@
 #header{
-    padding-left: 0px;
-    padding-right: 0px;
+    padding: 0px;
     background: #ff5500;
 }
 .logo{
     background: #FFFFFF;
-    align-content: left;
+    align-content: center;
     margin: 0px;
 }
 
 .logo-text{
-    text-align: center;
-    width: 200px;
-}
+    padding-left: 10px;
+    text-align: left;
+    font-size: 12px;
+    font-style: oblique;
+    font-family: 'PT Sans', sans-serif;}
 
 .intro{
     font-size: 36px;
