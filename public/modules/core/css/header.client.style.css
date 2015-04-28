@@ -1,0 +1,23 @@
+#header{
+    padding-left: 0px;
+    padding-right: 0px;
+    background: #ff5500;
+}
+.logo{
+    background: #FFFFFF;
+    align-content: left;
+    margin: 0px;
+}
+
+.logo-text{
+    text-align: center;
+    width: 200px;
+}
+
+.intro{
+    font-size: 36px;
+    font-family: 'PT Sans', sans-serif;
+    font-style: italic;
+    text-align: left;
+}
+
