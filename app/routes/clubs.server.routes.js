@@ -11,7 +11,7 @@ var clubs = require('../../app/controllers/clubs.server.controller');
  * Clubs API
  */
 module.exports = function(app) {
-    // Club Routes
+ 	// Routing logic   
     app.route('/clubs')
         .get(clubs.list)
         .post(clubs.create);

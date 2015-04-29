@@ -1,11 +1,17 @@
-// app/models/club.js
+// app/models/club.server.model.js
 
 'use strict';
 
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+/**
+ * Module dependencies.
+ */
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
 
-var ClubSchema   = new Schema({
+/**
+ * Club Schema
+ */
+var ClubSchema = new Schema({
     name: {
         type: String,
         default: '',
@@ -28,4 +34,4 @@ var ClubSchema   = new Schema({
     }
 });
 
-mongoose.model( 'Club', ClubSchema );
+mongoose.model('Club', ClubSchema);

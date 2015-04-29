@@ -30,14 +30,14 @@ exports.create = function(req, res) {
 };
 
 /**
- * Show the current club
+ * Show the current Club
  */
 exports.read = function(req, res) {
 	res.json(req.club);
 };
 
 /**
- * Update a club
+ * Update a Club
  */
 exports.update = function(req, res) {
 	var club = req.club;
@@ -55,7 +55,7 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an club
+ * Delete an Club
  */
 exports.delete = function(req, res) {
 	var club = req.club;
@@ -72,7 +72,7 @@ exports.delete = function(req, res) {
 };
 
 /**
- * List of clubs
+ * List of Clubs
  */
 exports.list = function(req, res) {
 	Club.find().sort('-created').populate('user', 'displayName').exec(function(err, clubs) {
