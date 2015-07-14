@@ -4,7 +4,8 @@
 /**
  * Module dependencies.
  */
-var dancers = require('../../app/controllers/dancers.server.controller');
+var users = require('../../app/controllers/users.server.controller'),
+    dancers = require('../../app/controllers/dancers.server.controller');
 
 module.exports = function(app) {
     // Dancers Routes
@@ -14,9 +15,9 @@ module.exports = function(app) {
 
     app.route('/dancers/:dancerId')
         .get(dancers.read)
-        .put(dancers.update)
-        .delete(dancers.delete);
+        .put(users.requiresLogin, dancers.hasAuthorization, dancers.update)
+        .delete(users.requiresLogin, dancers.hasAuthorization, dancers.delete);
 
-    // Finish by binding the article middleware
+    // Finish by binding the dancer middleware
 //    app.param('dancerId', dancers.dancerById);
 };

@@ -22,5 +22,5 @@ module.exports = function(app) {
         .delete(clubs.delete);
 
     // Finish by binding the article middleware
-    app.param('categoryId', clubs.clubByID);
+    app.param('clubId', clubs.clubByID);
 };

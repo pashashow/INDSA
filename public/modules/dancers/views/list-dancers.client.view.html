@@ -5,13 +5,13 @@
 	<div class="list-group">
 		<a data-ng-repeat="dancer in dancers" data-ng-href="#!/dancers/{{dancer._id}}" class="list-group-item">
 			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="dancer.created | date:'mediumDate'"></span>
-				by
-				<span data-ng-bind="dancer.user.displayName"></span>
+				Social ID
+				<span data-ng-bind="dancer.socialID"></span>
+				Surname
+				<span data-ng-bind="dancer.latName"></span>
 			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="dancer.title"></h4>
-			<p class="list-group-item-text" data-ng-bind="dancer.content"></p>
+			<h4 class="list-group-item-heading" data-ng-bind="dancer.lastName"></h4>
+			<p class="list-group-item-text" data-ng-bind="dancer.socialID"></p>
 		</a>
 	</div>
 	<div class="alert alert-warning text-center" data-ng-if="dancers.$resolved && !dancers.length">

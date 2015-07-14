@@ -1,33 +1,43 @@
 // app/models/dancer.js
 'use strict';
 
-var mongoose     = require( 'mongoose' );
-var Schema       = mongoose.Schema;
+/**
+ * Module dependencies.
+ */
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
+/**
+ * Dancer Schema
+ */
 var DancerSchema   = new Schema({
     socialID: {
         type: String,
         default: '',
-        trim: true
-//        required: 'Social ID cannot be blank'
+        trim: true,
+        required: 'Social ID field cannot be blank'
     },
     firstName: {
         type: String,
         default: '',
-        trim: true
-//        required: 'First name cannot be blank'
+        trim: true,
+        required: 'First Name field cannot be blank'
     },
     lastName: {
         type: String,
         default: '',
-        trim: true
-//        required: 'Last name cannot be blank'
+        trim: true//,
+        //required: 'Second Name field cannot be blank'
+    }/* ,
+    dob: {
+        type: Date
     },
-    dob: Date,
-    isPaid: Boolean,
+    isPaid: {
+        type: Boolean
+    },
     partner: {
         type: Schema.ObjectId,
-        ref: 'Dancer' }
+        ref: 'Dancer' }*/
 });
 
 mongoose.model( 'Dancer', DancerSchema );

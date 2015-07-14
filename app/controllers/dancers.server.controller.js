@@ -13,12 +13,12 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var dancer = new Dancer(req.body);
-	dancer.socialID = req.socialID;
-	dancer.firstName = req.firstName;
-	dancer.lastName = req.lastName;
-	dancer.dob = req.dob;
-	dancer.isPaid = req.isPaid;
-	dancer.partner = req.partner;
+//	dancer.socialID = '222222222222';//req.socialID;
+//	dancer.firstName = req.firstName;
+//	dancer.lastName = req.lastName;
+//	dancer.dob = req.dob;
+//	dancer.isPaid = req.isPaid;
+//	dancer.partner = req.partner;
 
 	dancer.save(function(err) {
 		if (err) {

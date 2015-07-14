@@ -4,7 +4,7 @@
 angular.module('dancers').factory('Dancers', ['$resource',
 	function($resource) {
 		return $resource('dancers/:dancerId', {
-			articleId: '@_id'
+			dancerId: '@_id'
 		}, {
 			update: {
 				method: 'PUT'

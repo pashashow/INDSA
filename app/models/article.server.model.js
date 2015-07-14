@@ -1,3 +1,4 @@
+// app/models/articles.js
 'use strict';
 
 /**

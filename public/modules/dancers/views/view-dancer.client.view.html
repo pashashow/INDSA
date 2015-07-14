@@ -1,6 +1,6 @@
 <section data-ng-controller="DancersController" data-ng-init="findOne()">
 	<div class="page-header">
-		<h1 data-ng-bind="dancer.title"></h1>
+		<h1 data-ng-bind="dancer.lastName"></h1>
 	</div>
 	<div class="pull-right" data-ng-show="authentication.user._id == article.user._id">
 		<a class="btn btn-primary" href="/#!/dancers/{{dancer._id}}/edit">
@@ -12,11 +12,11 @@
 	</div>
 	<small>
 		<em class="text-muted">
-			Posted on
-			<span data-ng-bind="dancer.created | date:'mediumDate'"></span>
-			by
-			<span data-ng-bind="dancer.user.displayName"></span>
+			Dancer social ID
+			<span data-ng-bind="dancer.socialID"></span>
+			Surname
+			<span data-ng-bind="dancer.lastName"></span>
 		</em>
 	</small>
-	<p class="lead" data-ng-bind="dancer.content"></p>
+	<p class="lead" data-ng-bind="dancer.firstName"></p>
 </section>

@@ -8,9 +8,9 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 			var dancer = new Dancers({
                 socialID: this.socialID,
                 firstName: this.firstName,
-				lastName: this.lastName,
-				dob: this.dob,
-                isPaid: true
+				lastName: this.lastName
+				//dob: this.dob,
+                //isPaid: true
                 //partner = req.partner;
 			});
 			dancer.$save(function(response) {
@@ -19,8 +19,8 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
                 $scope.socialID = '';
                 $scope.firstName = '';
 				$scope.lastName = '';
-				$scope.dob = '';
-                $scope.isPaid = '';
+//				$scope.dob = '';
+//                $scope.isPaid = '';
 //                $scope.partner = '';
 
 			}, function(errorResponse) {
@@ -60,7 +60,7 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 
 		$scope.findOne = function() {
 			$scope.dancer = Dancers.get({
-				dancerId: $stateParams.dancereId
+				dancerId: $stateParams.dancerId
 			});
 		};
 	}
