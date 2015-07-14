@@ -10,14 +10,14 @@
                 <div class="intro">Some dumbass tagline goes here</div>
             </div>
         </div>
-        <button type="button" class="navbar-toggle" data-ng-click="toggleCollapsibleMenu()">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" data-ng-click="toggleCollapsibleMenu()">
 			<span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
     </div>
-    <nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
+    <nav class="collapse navbar-collapse" collapse="!isCollapsed" id="navbar" >
         <ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
             <li data-ng-repeat="item in menu.items | orderBy: 'position'"
                 data-ng-if="item.shouldRender(authentication.user);"
@@ -75,3 +75,4 @@
         </ul>
     </nav>
 </nav>
+
