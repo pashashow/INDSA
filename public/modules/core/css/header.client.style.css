@@ -1,13 +1,12 @@
-#header{
-    padding: 0px;
-    background: #ff5500;
-}
 .logo{
     background: #FFFFFF;
     align-content: center;
     margin: 0px;
 }
-
+.navbar-header {
+    float: none;
+    background: #0000ee;
+}
 .logo-text{
     padding-left: 10px;
     text-align: left;
@@ -21,4 +20,3 @@
     font-style: italic;
     text-align: left;
 }
-
