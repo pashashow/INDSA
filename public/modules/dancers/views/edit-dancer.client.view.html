@@ -8,28 +8,28 @@
                 <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.socialID.$invalid}">
                     <label class="control-label" for="socialID">Social ID</label>
                     <div class="controls">
-                        <input name="socialID" type="text" data-ng-model="dancer.socialID" id="socialID" class="form-control" placeholder="social ID" required>
+                        <input name="socialID" type="text" data-ng-model="dancer.socialID" id="socialID" class="form-control" required>
                     </div>
                     <div ng-show="submitted && danacerForm.socialID.$invalid" class="help-block">
                         <p ng-show="danacerForm.socialID.$error.required" class="text-danger">Social ID is required</p>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error' : submitted && danacerForm.firstName.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.firstName.$invalid}">
                     <label class="control-label" for="firstName">First Name</label>
                     <div class="controls">
-                        <input name="firstName" data-ng-model="danacer.firstName" id="firstName" class="form-control" placeholder="First sName" required/>
+                        <input name="firstName" data-ng-model="dancer.firstName" id="firstName" class="form-control" required/>
                     </div>
-                    <div ng-show="submitted && danacerForm.firstName.$invalid" class="help-block">
-                        <p ng-show="danacerForm.firstName.$error.required" class="text-danger">First Name is required</p>
+                    <div ng-show="submitted && dancerForm.firstName.$invalid" class="help-block">
+                        <p ng-show="dancerForm.firstName.$error.required" class="text-danger">First Name is required</p>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error' : submitted && danacerForm.lastName.$invalid}">
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.lastName.$invalid}">
                     <label class="control-label" for="lastName">Surname</label>
                     <div class="controls">
-                        <input name="lastName" data-ng-model="danacer.lastName" id="lastName" class="form-control" placeholder="Surname" required/>
+                        <input name="lastName" data-ng-model="dancer.lastName" id="lastName" class="form-control" required/>
                     </div>
-                    <div ng-show="submitted && danacerForm.lastName.$invalid" class="help-block">
-                        <p ng-show="danacerForm.lastName.$error.required" class="text-danger">Surame is required</p>
+                    <div ng-show="submitted && dancerForm.lastName.$invalid" class="help-block">
+                        <p ng-show="dancerForm.lastName.$error.required" class="text-danger">Surname is required</p>
                     </div>
                 </div>
                 <div class="form-group">
