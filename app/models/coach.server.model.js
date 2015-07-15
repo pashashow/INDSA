@@ -22,6 +22,20 @@ var CoachSchema = new Schema({
         trim: true,
         required: 'Please fill Last name, it cannot be blank'
     },
+    email: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    phone: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    isActive: {
+        type: Boolean,
+        default: true
+    }
 /*
 	user: {
 		type: Schema.ObjectId,

@@ -10,7 +10,10 @@ angular.module('coaches').controller('CoachesController', ['$scope', '$statePara
 			// Create new Coach object
 			var coach = new Coaches ({
 				firstName: this.firstName,
-				lastName: this.lastName
+				lastName: this.lastName,
+                email: this.email,
+                phone: this.phone,
+                isActive: this.isActive
 			});
 
 			// Redirect after save
@@ -20,6 +23,9 @@ angular.module('coaches').controller('CoachesController', ['$scope', '$statePara
 				// Clear form fields
 				$scope.firstName = '';
 				$scope.lastName = '';
+                $scope.email = '';
+                $scope.phone = '';
+                $scope.isActive = '';
 
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
