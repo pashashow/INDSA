@@ -1,3 +1,4 @@
+<link REL=StyleSheet href="modules/coaches/css/create.coach.style.css" TYPE="text/css">
 <section data-ng-controller="CoachesController">
     <div class="page-header">
         <h1>New Coach</h1>
@@ -6,15 +7,33 @@
         <form class="form-horizontal" data-ng-submit="create()" novalidate>
             <fieldset>
                 <div class="form-group">
-                    <label class="control-label" for="firstName">First Name</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="firstName" id="firstName" class="form-control" placeholder="First Name" required>
+                    <label class="control-label col-lg-4" for="firstName">First Name</label>
+                    <div class="controls  col-lg-8">
+                        <input type="text" id="firstName" data-ng-model="firstName" class="form-control" placeholder="First Name" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="lastName">Surname</label>
-                    <div class="controls">
-                        <input type="text" data-ng-model="lastName" id="lastName" class="form-control" placeholder="Last Name" required>
+                    <label class="control-label col-lg-4" for="lastName">Surname</label>
+                    <div class="controls col-lg-8">
+                        <input type="text" id="lastName" data-ng-model="lastName" class="form-control" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4" for="email">Email:</label>
+                    <div class="controls col-lg-8">
+                        <input type="email" id="email" data-ng-model="email" class="form-control" placeholder="user@domail.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4" for="lastName">Phone:</label>
+                    <div class="controls col-lg-8">
+                        <input type="tel" id="phone" data-ng-model="phone" class="form-control" placeholder="+CCC(NNN)1234567" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4" for="isActive">Active:</label>
+                    <div class="togglebutton">
+                        <input type="checkbox" id="isActive" data-ng-model="isActive">
                     </div>
                 </div>
                 <div class="form-group">

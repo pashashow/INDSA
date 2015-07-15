@@ -34,7 +34,7 @@ var CoachSchema = new Schema({
     },
     isActive: {
         type: Boolean,
-        default: true
+        default: false
     }
 /*
 	user: {
