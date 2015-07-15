@@ -11,6 +11,7 @@ angular.module('categories').controller('CategoriesController', ['$scope', '$sta
 			var category = new Categories ({
 				name: this.name,
 				level: this.level,
+				isINDSA: this.isINDSA,
 				description: this.description
 			});
 
@@ -21,6 +22,7 @@ angular.module('categories').controller('CategoriesController', ['$scope', '$sta
 				// Clear form fields
 				$scope.name = '';
 				$scope.level = '';
+				$scope.isINDSA = '';
 				$scope.description = '';
 
 			}, function(errorResponse) {

@@ -20,6 +20,10 @@ var CategorySchema = new Schema({
 	level: {
 		type: Number
 	},
+	isINDSA: {
+		type: Boolean,
+		default: true
+	},
 	description: {
 		type: String,
 		default: '',

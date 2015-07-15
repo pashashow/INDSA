@@ -20,7 +20,7 @@ module.exports = function(app) {
 	app.route('/categories/:categoryId')
 		.get(categories.read)
 		.put(users.requiresLogin, categories.update)
-		.delete(categories.delete);
+		.delete(users.requiresLogin, categories.delete);
 
 	// Finish by binding the Category middleware
 	app.param('categoryId', categories.categoryByID);
