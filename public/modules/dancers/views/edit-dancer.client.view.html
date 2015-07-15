@@ -69,15 +69,31 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="select" class="col-lg-4 control-label">Partner:</label>
-                    <div class="col-lg-8">
-                        <select class="form-control" id="select">
-                            <option>Dancer 1</option>
-                            <option>Dancer 2</option>
-                            <option>Dancer 3</option>
-                            <option>Dancer 4</option>
-                            <option>Dancer 5</option>
+                    <label class=" control-label col-lg-4" for="partner">Partner:</label>
+                    <small class="controls col-lg-8">
+                        <em id="partner" class="text-muted">
+                            <span data-ng-bind="dancer.partner"></span>
+                        </em>
+                    </small>
+<!--
+                    <div class="controls col-lg-8">
+                        <select id="partner" name="partner" ng-model="Dancers"
+                                ng-options="select as dancer.lastName for dancer in dancers" class="form-control" >
+                            <option value=""><span data-ng-bind="dancer.lastName"></span></option>
                         </select>
+                    </div>
+-->
+                    <div ng-show="submitted && danacerForm.partner.$invalid" class="help-block">
+                        <p ng-show="danacerForm.partner.$error.required" class="text-danger">Partner data is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4" for="isPaid">Paid:</label>
+                    <div class="togglebutton">
+                        <input type="checkbox" id="isPaid" data-ng-model="dancer.isPaid">
+                    </div>
+                    <div ng-show="submitted && danacerForm.isPaid.$invalid" class="help-block">
+                        <p ng-show="danacerForm.isPaid.$error.required" class="text-danger">Payment data is required</p>
                     </div>
                 </div>
                 <div class="form-group">
