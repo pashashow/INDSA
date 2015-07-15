@@ -9,13 +9,15 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 		$scope.create = function() {
 			// Create new Dancer object
 			var dancer = new Dancers ({
-                	socialID: this.socialID,
-                	firstName: this.firstName,
-					lastName: this.lastName
-					//dob: this.dob,
-                	//isPaid: true
-                	//partner = req.partner;
-			});
+				socialID: this.socialID,
+				firstName: this.firstName,
+				lastName: this.lastName,
+				dob: this.dob,
+				gender: this.gender,
+				isPaid: true
+			/*
+                	partner = req.partner
+			*/});
 
 			// Redirect after save
 			dancer.$save(function(response) {
@@ -25,8 +27,9 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
                	$scope.socialID = '';
                 $scope.firstName = '';
 				$scope.lastName = '';
-//				$scope.dob = '';
-//              $scope.isPaid = '';
+				$scope.dob = '';
+              	$scope.gender = '';
+				$scope.isPaid = '';
 //              $scope.partner = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;

@@ -29,10 +29,16 @@
                         <input name="dob" type="date" value="1975-04-12" class="date" id="dob" required>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error': dancerForm.dob.$invalid }">
+                <div class="form-group" ng-class="{ 'has-error': dancerForm.gender.$invalid }">
+                    <label class="control-label" for="gender">Gender:</label>
+                    <div class="controls">
+                        <input type="text" name="gender" data-ng-model="gender" id="gender" class="form-control" placeholder="gender">
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': dancerForm.email.$invalid }">
                     <label class="control-label" for="email">Email:</label>
                     <div class="controls">
-                        <input type="email" name="email" id="email" value="" placeholder="user@domail.com">
+                        <input type="email" name="email" id="email" placeholder="user@domail.com">
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error': dancerForm.dob.$invalid }">

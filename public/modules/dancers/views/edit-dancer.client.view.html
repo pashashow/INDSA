@@ -32,6 +32,15 @@
                         <p ng-show="dancerForm.lastName.$error.required" class="text-danger">Surname is required</p>
                     </div>
                 </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.gender.$invalid}">
+                    <label class="control-label" for="lastName">Gender</label>
+                    <div class="controls">
+                        <input name="gender" data-ng-model="dancer.gender" id="gender" class="form-control" required/>
+                    </div>
+                    <div ng-show="submitted && dancerForm.gender.$invalid" class="help-block">
+                        <p ng-show="dancerForm.gender.$error.required" class="text-danger">Gender is required</p>
+                    </div>
+                </div>
                 <div class="form-group">
                     <input type="submit" value="Update" class="btn btn-default">
                 </div>

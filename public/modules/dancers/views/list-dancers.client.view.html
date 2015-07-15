@@ -6,13 +6,14 @@
         <a data-ng-repeat="dancer in dancers" data-ng-href="#!/dancers/{{dancer._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Dancer:
+				<span data-ng-bind="dancer.firstName"></span>
 				<span data-ng-bind="dancer.lastName"></span>
 				(Social ID:
 				<span data-ng-bind="dancer.socialID"></span>
 				)
+				<span data-ng-bind="dancer.gender"></span>
+				<span data-ng-bind="dancer.dob"></span>
 			</small>
-			<p class="list-group-item-heading" data-ng-bind="dancer.lastName"></p>
-			<p class="list-group-item-text" data-ng-bind="dancer.socialID"></p>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!dancers.$resolved || dancers.length">
