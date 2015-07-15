@@ -1,112 +1,107 @@
-//app\controllers\agegroups.server.controller.js
-
 'use strict';
 
 /**
  * Module dependencies.
  */
-    var mongoose = require('mongoose'),
-    errorHandler = require('./errors.server.controller'),
-    AgeGroup = mongoose.model('AgeGroup'),
-    _ = require('lodash');
+var mongoose = require('mongoose'),
+	errorHandler = require('./errors.server.controller'),
+	Agegroup = mongoose.model('Agegroup'),
+	_ = require('lodash');
 
 /**
- * Create a article
+ * Create a Agegroup
  */
 exports.create = function(req, res) {
-    var ageGroup = new AgeGroup(req.body);
-    ageGroup.level = req.level;
-    ageGroup.name = req.name;
+	var agegroup = new Agegroup(req.body);
+	agegroup.user = req.user;
 
-    ageGroup.save(function(err) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.json(ageGroup);
-        }
-    });
+	agegroup.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(agegroup);
+		}
+	});
 };
 
 /**
- * Show the current age group
+ * Show the current Agegroup
  */
 exports.read = function(req, res) {
-    res.json(req.ageGroup);
+	res.jsonp(req.agegroup);
 };
 
 /**
- * Update a article
+ * Update a Agegroup
  */
 exports.update = function(req, res) {
-    var ageGroup = req.ageGroup;
+	var agegroup = req.agegroup ;
 
-    ageGroup = _.extend(ageGroup, req.body);
+	agegroup = _.extend(agegroup , req.body);
 
-    ageGroup.save(function(err) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.json(ageGroup);
-        }
-    });
+	agegroup.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(agegroup);
+		}
+	});
 };
 
 /**
- * Delete an article
+ * Delete an Agegroup
  */
 exports.delete = function(req, res) {
-    var ageGroup = req.ageGroup;
+	var agegroup = req.agegroup ;
 
-    ageGroup.remove(function(err) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.json(ageGroup);
-        }
-    });
+	agegroup.remove(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(agegroup);
+		}
+	});
 };
 
 /**
- * List of AgeGroups
+ * List of Agegroups
  */
-exports.list = function(req, res) {
-    AgeGroup.find().sort('-created').populate('user', 'displayName').exec(function(err, ageGroups) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        } else {
-            res.json(ageGroups);
-        }
-    });
+exports.list = function(req, res) { 
+	Agegroup.find().sort('-created').populate('user', 'displayName').exec(function(err, agegroups) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(agegroups);
+		}
+	});
 };
 
 /**
- * AgeGroups middleware
+ * Agegroup middleware
  */
-exports.ageGroupByID = function(req, res, next, id) {
-    AgeGroup.findById(id).populate('user', 'displayName').exec(function(err, article) {
-        if (err) return next(err);
-        if (!article) return next(new Error('Failed to load article ' + id));
-        req.article = article;
-        next();
-    });
+exports.agegroupByID = function(req, res, next, id) { 
+	Agegroup.findById(id).populate('user', 'displayName').exec(function(err, agegroup) {
+		if (err) return next(err);
+		if (! agegroup) return next(new Error('Failed to load Agegroup ' + id));
+		req.agegroup = agegroup ;
+		next();
+	});
 };
 
 /**
- * Article authorization middleware
+ * Agegroup authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-    if (req.ageGroup.__id !== req.user._id) {
-        return res.status(403).send({
-            message: 'User is not authorized'
-        });
-    }
-    next();
+	if (req.agegroup.user.id !== req.user.id) {
+		return res.status(403).send('User is not authorized');
+	}
+	next();
 };

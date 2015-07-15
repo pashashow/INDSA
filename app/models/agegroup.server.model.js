@@ -1,24 +1,34 @@
-// app/models/agegroup.js
 'use strict';
 
 /**
  * Module dependencies.
  */
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
 
 /**
- * AgeGroup Schema
+ * Agegroup Schema
  */
-
-var AgeGroupSchema   = new Schema({
-    name: {
-        type: String,
-        default: '',
-        trim: true,
-        required: 'Age group name cannot be blank'
-    },
-    level: Number
+var AgegroupSchema = new Schema({
+	name: {
+		type: String,
+		default: '',
+		required: 'Please fill Agegroup name, it cannot be blank',
+		trim: true
+	},
+    level: {
+		type: Number
+	},
+	description: {
+		type: String,
+		default: '',
+		trim: true
+	}
+/*	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	}
+*/
 });
 
-mongoose.model('AgeGroup', AgeGroupSchema );
+mongoose.model('Agegroup', AgegroupSchema);

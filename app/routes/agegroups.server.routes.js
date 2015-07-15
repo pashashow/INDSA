@@ -1,26 +1,19 @@
-// app/routes/agegroup.js
-
 'use strict';
 
-/**
- * Module dependencies.
- */
-var ageGroups = require('../../app/controllers/agegroups.server.controller');
-
-/**
- * AgeGroup API
- */
 module.exports = function(app) {
-    // ageGroups Routes
-    app.route('/agegroups')
-        .get(ageGroups.list)
-        .post(ageGroups.create);
+	var users = require('../../app/controllers/users.server.controller');
+	var agegroups = require('../../app/controllers/agegroups.server.controller');
 
-    app.route('/agegroups/:agegroupId')
-        .get(ageGroups.read)
-        .put(ageGroups.update)
-        .delete(ageGroups.delete);
+	// Agegroups Routes
+	app.route('/agegroups')
+		.get(agegroups.list)
+		.post(users.requiresLogin, agegroups.create);
 
-    // Finish by binding the article middleware
-    app.param('agegroupId', ageGroups.ageGroupByID);
+	app.route('/agegroups/:agegroupId')
+		.get(agegroups.read)
+		.put(users.requiresLogin, agegroups.update)
+		.delete(users.requiresLogin, agegroups.delete);
+
+	// Finish by binding the Agegroup middleware
+	app.param('agegroupId', agegroups.agegroupByID);
 };
