@@ -5,22 +5,23 @@
 /**
  * Module dependencies.
  */
-var categories = require('../../app/controllers/categories.server.controller');
+module.exports = function(app) {
+	var users = require('../../app/controllers/users.server.controller');
+	var categories = require('../../app/controllers/categories.server.controller');
 
 /**
  * Category API
  */
-module.exports = function(app) {
-    // Category Routes
-    app.route('/categories')
-        .get(categories.list)
-        .post(categories.create);
+	// Categories Routes
+	app.route('/categories')
+		.get(categories.list)
+		.post(users.requiresLogin, categories.create);
 
-    app.route('/categories/:categoryId')
-        .get(categories.read)
-        .put(categories.update)
-        .delete(categories.delete);
+	app.route('/categories/:categoryId')
+		.get(categories.read)
+		.put(users.requiresLogin, categories.update)
+		.delete(categories.delete);
 
-    // Finish by binding the article middleware
-    app.param('categoryId', categories.categoryByID);
+	// Finish by binding the Category middleware
+	app.param('categoryId', categories.categoryByID);
 };

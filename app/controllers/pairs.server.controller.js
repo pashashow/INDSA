@@ -13,14 +13,14 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var pair = new Pair(req.body);
-	pair.firstPartner = req.firstPartner;
-	pair.secondPartner = req.secondPartner;
-	pair.club = req.club;
-	pair.ageGroup = req.ageGroup;
-	pair.category = req.category;
-	pair.isActive = req.isActive;
-	pair.points = req.points;
-	pair.rank = req.rank;
+//	pair.firstPartner = req.firstPartner;
+//	pair.secondPartner = req.secondPartner;
+//	pair.club = req.club;
+//	pair.ageGroup = req.ageGroup;
+//	pair.category = req.category;
+//	pair.isActive = req.isActive;
+//	pair.points = req.points;
+//	pair.rank = req.rank;
 
 	pair.save(function(err) {
 		if (err) {
@@ -96,7 +96,7 @@ exports.list = function(req, res) {
 exports.pairByID = function(req, res, next, id) {
 	Pair.findById(id).populate('user', 'displayName').exec(function(err, pair) {
 		if (err) return next(err);
-		if (!pair) return next(new Error('Failed to load pair ' + id));
+//		if (!pair) return next(new Error('Failed to load pair ' + id));
 		req.pair = pair;
 		next();
 	});

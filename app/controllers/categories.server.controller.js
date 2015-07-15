@@ -13,8 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var category = new Category(req.body);
-	category.name = req.name;
-	category.level = req.level;
+//	category.user = req.user;
 
 	category.save(function(err) {
 		if (err) {
@@ -22,24 +21,25 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(category);
+			res.jsonp(category);
 		}
 	});
 };
 
 /**
- * Show the current category
+ * Show the current Category
  */
 exports.read = function(req, res) {
-	res.json(req.category);
+	res.jsonp(req.category);
 };
 
 /**
- * Update a category
+ * Update a Category
  */
 exports.update = function(req, res) {
-	var category = req.category;
-	category = _.extend(category, req.body);
+	var category = req.category ;
+
+	category = _.extend(category , req.body);
 
 	category.save(function(err) {
 		if (err) {
@@ -47,16 +47,16 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(category);
+			res.jsonp(category);
 		}
 	});
 };
 
 /**
- * Delete an category
+ * Delete an Category
  */
 exports.delete = function(req, res) {
-	var category = req.category;
+	var category = req.category ;
 
 	category.remove(function(err) {
 		if (err) {
@@ -64,34 +64,34 @@ exports.delete = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(category);
+			res.jsonp(category);
 		}
 	});
 };
 
 /**
- * List of categories
+ * List of Categories
  */
-exports.list = function(req, res) {
+exports.list = function(req, res) { 
 	Category.find().sort('-created').populate('user', 'displayName').exec(function(err, categories) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(categories);
+			res.jsonp(categories);
 		}
 	});
 };
 
 /**
- * category middleware
+ * Category middleware
  */
-exports.categoryByID = function(req, res, next, id) {
+exports.categoryByID = function(req, res, next, id) { 
 	Category.findById(id).populate('user', 'displayName').exec(function(err, category) {
 		if (err) return next(err);
-		if (!category) return next(new Error('Failed to load category ' + id));
-		req.category = category;
+		if (! category) return next(new Error('Failed to load Category ' + id));
+		req.category = category ;
 		next();
 	});
 };
@@ -100,10 +100,8 @@ exports.categoryByID = function(req, res, next, id) {
  * Category authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.category.id !== req.id) {
-		return res.status(403).send({
-			message: 'Category is not authorized'
-		});
+	if (req.category.user.id !== req.user.id) {
+		return res.status(403).send('User is not authorized');
 	}
 	next();
 };

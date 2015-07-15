@@ -1,17 +1,35 @@
 // app/models/category.js
 'use strict';
 
-var mongoose     = require( 'mongoose' );
-var Schema       = mongoose.Schema;
+/**
+ * Module dependencies.
+ */
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
 
-var CategorySchema   = new Schema({
-    name: {
-        type: String,
-        default: '',
-        trim: true,
-        required: 'Category name cannot be blank'
-    },
-    level: Number
+/**
+ * Category Schema
+ */
+var CategorySchema = new Schema({
+	name: {
+		type: String,
+		default: '',
+		required: 'Please fill Category name, it cannot be blank',
+		trim: true
+	},
+	level: {
+		type: Number
+	},
+	description: {
+		type: String,
+		default: '',
+		trim: true
+	}
+/*	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	}
+*/
 });
 
-mongoose.model( 'Category', CategorySchema );
+mongoose.model('Category', CategorySchema);
