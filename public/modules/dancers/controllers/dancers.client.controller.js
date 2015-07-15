@@ -1,39 +1,45 @@
 'use strict';
 
+// Dancers controller
 angular.module('dancers').controller('DancersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Dancers',
 	function($scope, $stateParams, $location, Authentication, Dancers) {
 		$scope.authentication = Authentication;
 
+		// Create new Dancer
 		$scope.create = function() {
-			var dancer = new Dancers({
-                socialID: this.socialID,
-                firstName: this.firstName,
-				lastName: this.lastName
-				//dob: this.dob,
-                //isPaid: true
-                //partner = req.partner;
+			// Create new Dancer object
+			var dancer = new Dancers ({
+                	socialID: this.socialID,
+                	firstName: this.firstName,
+					lastName: this.lastName
+					//dob: this.dob,
+                	//isPaid: true
+                	//partner = req.partner;
 			});
+
+			// Redirect after save
 			dancer.$save(function(response) {
 				$location.path('dancers/' + response._id);
 
-                $scope.socialID = '';
+				// Clear form fields
+               	$scope.socialID = '';
                 $scope.firstName = '';
 				$scope.lastName = '';
 //				$scope.dob = '';
-//                $scope.isPaid = '';
-//                $scope.partner = '';
-
+//              $scope.isPaid = '';
+//              $scope.partner = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
 		};
 
+		// Remove existing Dancer
 		$scope.remove = function(dancer) {
-			if (dancer) {
+			if ( dancer ) { 
 				dancer.$remove();
 
 				for (var i in $scope.dancers) {
-					if ($scope.dancers[i] === dancer) {
+					if ($scope.dancers [i] === dancer) {
 						$scope.dancers.splice(i, 1);
 					}
 				}
@@ -44,6 +50,7 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 			}
 		};
 
+		// Update existing Dancer
 		$scope.update = function() {
 			var dancer = $scope.dancer;
 
@@ -54,12 +61,14 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 			});
 		};
 
+		// Find a list of Dancers
 		$scope.find = function() {
 			$scope.dancers = Dancers.query();
 		};
 
+		// Find existing Dancer
 		$scope.findOne = function() {
-			$scope.dancer = Dancers.get({
+			$scope.dancer = Dancers.get({ 
 				dancerId: $stateParams.dancerId
 			});
 		};

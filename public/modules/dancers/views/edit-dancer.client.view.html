@@ -1,44 +1,44 @@
 <section data-ng-controller="DancersController" data-ng-init="findOne()">
-	<div class="page-header">
-		<h1>Edit Dancer</h1>
-	</div>
-	<div class="col-md-12">
-		<form name="dancerForm" class="form-horizontal" data-ng-submit="update(dancerForm.$valid)" novalidate>
-			<fieldset>
-				<div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.socialID.$invalid}">
-					<label class="control-label" for="socialID">Social ID</label>
-					<div class="controls">
-						<input name="socialID" type="text" data-ng-model="dancer.socialID" id="socialID" class="form-control" placeholder="social ID" required>
-					</div>
-					<div ng-show="submitted && danacerForm.socialID.$invalid" class="help-block">
-						<p ng-show="danacerForm.socialID.$error.required" class="text-danger">Social ID is required</p>
-					</div>
-				</div>
-				<div class="form-group" ng-class="{ 'has-error' : submitted && danacerForm.firstName.$invalid}">
-					<label class="control-label" for="firstName">First Name</label>
-					<div class="controls">
-						<textarea name="firstName" data-ng-model="danacer.firstName" id="firstName" class="form-control" cols="30" rows="10" placeholder="First sName" required></textarea>
-					</div>
-					<div ng-show="submitted && danacerForm.firstName.$invalid" class="help-block">
-						<p ng-show="danacerForm.firstName.$error.required" class="text-danger">First Name is required</p>
-					</div>
-				</div>
-				<div class="form-group" ng-class="{ 'has-error' : submitted && danacerForm.lastName.$invalid}">
-					<label class="control-label" for="lastName">First Name</label>
-					<div class="controls">
-						<textarea name="lastName" data-ng-model="danacer.lastName" id="lastName" class="form-control" cols="30" rows="10" placeholder="Surname" required></textarea>
-					</div>
-					<div ng-show="submitted && danacerForm.lastName.$invalid" class="help-block">
-						<p ng-show="danacerForm.lastName.$error.required" class="text-danger">Surame is required</p>
-					</div>
-				</div>
-				<div class="form-group">
-					<input type="submit" value="Update" class="btn btn-default">
-				</div>
+    <div class="page-header">
+        <h1>Edit Dancer</h1>
+    </div>
+    <div class="col-md-4">
+        <form name="dancerForm" class="form-horizontal" data-ng-submit="update(dancerForm.$valid)" novalidate>
+            <fieldset>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.socialID.$invalid}">
+                    <label class="control-label" for="socialID">Social ID</label>
+                    <div class="controls">
+                        <input name="socialID" type="text" data-ng-model="dancer.socialID" id="socialID" class="form-control" placeholder="social ID" required>
+                    </div>
+                    <div ng-show="submitted && danacerForm.socialID.$invalid" class="help-block">
+                        <p ng-show="danacerForm.socialID.$error.required" class="text-danger">Social ID is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && danacerForm.firstName.$invalid}">
+                    <label class="control-label" for="firstName">First Name</label>
+                    <div class="controls">
+                        <input name="firstName" data-ng-model="danacer.firstName" id="firstName" class="form-control" placeholder="First sName" required/>
+                    </div>
+                    <div ng-show="submitted && danacerForm.firstName.$invalid" class="help-block">
+                        <p ng-show="danacerForm.firstName.$error.required" class="text-danger">First Name is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && danacerForm.lastName.$invalid}">
+                    <label class="control-label" for="lastName">Surname</label>
+                    <div class="controls">
+                        <input name="lastName" data-ng-model="danacer.lastName" id="lastName" class="form-control" placeholder="Surname" required/>
+                    </div>
+                    <div ng-show="submitted && danacerForm.lastName.$invalid" class="help-block">
+                        <p ng-show="danacerForm.lastName.$error.required" class="text-danger">Surame is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-default">
+                </div>
 				<div data-ng-show="error" class="text-danger">
 					<strong data-ng-bind="error"></strong>
 				</div>
-			</fieldset>
-		</form>
-	</div>
+            </fieldset>
+        </form>
+    </div>
 </section>

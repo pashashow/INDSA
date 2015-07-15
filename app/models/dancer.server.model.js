@@ -5,7 +5,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+	Schema = mongoose.Schema;
 
 /**
  * Dancer Schema
@@ -26,8 +26,8 @@ var DancerSchema   = new Schema({
     lastName: {
         type: String,
         default: '',
-        trim: true//,
-        //required: 'Second Name field cannot be blank'
+        trim: true,
+        required: 'Surname field cannot be blank'
     }/* ,
     dob: {
         type: Date
@@ -37,8 +37,12 @@ var DancerSchema   = new Schema({
     },
     partner: {
         type: Schema.ObjectId,
-        ref: 'Dancer' }*/
+        ref: 'Dancer' 
+	},
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	}*/
 });
 
-mongoose.model( 'Dancer', DancerSchema );
-
+mongoose.model('Dancer', DancerSchema);

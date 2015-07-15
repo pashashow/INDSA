@@ -1,6 +1,6 @@
 'use strict';
 
-// Setting up route
+//Setting up route
 angular.module('dancers').config(['$stateProvider',
 	function($stateProvider) {
 		// Dancers state routing

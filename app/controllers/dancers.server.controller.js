@@ -9,16 +9,17 @@ var mongoose = require('mongoose'),
 	_ = require('lodash');
 
 /**
- * Create a dancer
+ * Create a Dancer
  */
 exports.create = function(req, res) {
 	var dancer = new Dancer(req.body);
-//	dancer.socialID = '222222222222';//req.socialID;
+//	dancer.socialID = req.socialID;
 //	dancer.firstName = req.firstName;
 //	dancer.lastName = req.lastName;
 //	dancer.dob = req.dob;
 //	dancer.isPaid = req.isPaid;
 //	dancer.partner = req.partner;
+//	dancer.user = req.user;
 
 	dancer.save(function(err) {
 		if (err) {
@@ -26,25 +27,25 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(dancer);
+			res.jsonp(dancer);
 		}
 	});
 };
 
 /**
- * Show the current dancer
+ * Show the current Dancer
  */
 exports.read = function(req, res) {
-	res.json(req.dancer);
+	res.jsonp(req.dancer);
 };
 
 /**
- * Update a dancer
+ * Update a Dancer
  */
 exports.update = function(req, res) {
-	var dancer = req.dancer;
+	var dancer = req.dancer ;
 
-	dancer = _.extend(dancer, req.body);
+	dancer = _.extend(dancer , req.body);
 
 	dancer.save(function(err) {
 		if (err) {
@@ -52,16 +53,16 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(dancer);
+			res.jsonp(dancer);
 		}
 	});
 };
 
 /**
- * Delete an dancer
+ * Delete an Dancer
  */
 exports.delete = function(req, res) {
-	var dancer = req.dancer;
+	var dancer = req.dancer ;
 
 	dancer.remove(function(err) {
 		if (err) {
@@ -69,7 +70,7 @@ exports.delete = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(dancer);
+			res.jsonp(dancer);
 		}
 	});
 };
@@ -77,15 +78,14 @@ exports.delete = function(req, res) {
 /**
  * List of Dancers
  */
-/*.sort('-created')*/
-exports.list = function(req, res) {
-	Dancer.find().populate('user', 'displayName').exec(function(err, dancers) {
+exports.list = function(req, res) { 
+	Dancer.find().sort('-created').populate('user', 'displayName').exec(function(err, dancers) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(dancers);
+			res.jsonp(dancers);
 		}
 	});
 };
@@ -93,11 +93,11 @@ exports.list = function(req, res) {
 /**
  * Dancer middleware
  */
-exports.dancerByID = function(req, res, next, id) {
+exports.dancerByID = function(req, res, next, id) { 
 	Dancer.findById(id).populate('user', 'displayName').exec(function(err, dancer) {
 		if (err) return next(err);
-		if (!dancer) return next(new Error('Failed to load dancer ' + id));
-		req.dancer = dancer;
+		if (! dancer) return next(new Error('Failed to load Dancer ' + id));
+		req.dancer = dancer ;
 		next();
 	});
 };
@@ -106,10 +106,9 @@ exports.dancerByID = function(req, res, next, id) {
  * Dancer authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.dancer.socialID !== req.socialID) {
-		return res.status(403).send({
-			message: 'Dancer is not authorized'
-		});
+//	if (req.dancer.socialID !== req.socialID) {
+	if (req.dancer.id !== req.id) {
+		return res.status(403).send('Dancer is not authorized');
 	}
 	next();
 };

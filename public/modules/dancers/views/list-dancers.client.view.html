@@ -1,9 +1,9 @@
 <section data-ng-controller="DancersController" data-ng-init="find()">
-	<div class="page-header">
-		<h1>Dancers</h1>
-	</div>
-	<div class="list-group">
-		<a data-ng-repeat="dancer in dancers" data-ng-href="#!/dancers/{{dancer._id}}" class="list-group-item">
+    <div class="page-header">
+        <h1>Dancers</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="dancer in dancers" data-ng-href="#!/dancers/{{dancer._id}}" class="list-group-item">
 			<small class="list-group-item-text">
 				Dancer:
 				<span data-ng-bind="dancer.lastName"></span>
@@ -13,9 +13,9 @@
 			</small>
 			<p class="list-group-item-heading" data-ng-bind="dancer.lastName"></p>
 			<p class="list-group-item-text" data-ng-bind="dancer.socialID"></p>
-		</a>
-	</div>
-	<div class="alert alert-warning text-center" data-ng-if="dancers.$resolved && !dancers.length">
-		No dancers yet, why don't you <a href="/#!/dancers/create">add one new</a>?
-	</div>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!dancers.$resolved || dancers.length">
+    	No Dancers yet, why don't you <a href="/#!/dancers/create">create one</a>?
+    </div>
 </section>
