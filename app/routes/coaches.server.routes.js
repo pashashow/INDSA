@@ -1,26 +1,19 @@
-// app/routes/coaches.server.routs.js
-
 'use strict';
 
-/**
- * Module dependencies.
- */
-var coaches = require('../../app/controllers/coaches.server.controller');
-
-/**
- * Coaches API
- */
 module.exports = function(app) {
-    // Coaches Routes
-    app.route('/coaches')
-        .get(coaches.list)
-        .post(coaches.create);
+	var users = require('../../app/controllers/users.server.controller');
+	var coaches = require('../../app/controllers/coaches.server.controller');
 
-    app.route('/coaches/:coachId')
-        .get(coaches.read)
-        .put(coaches.update)
-        .delete(coaches.delete);
+	// Coaches Routes
+	app.route('/coaches')
+		.get(coaches.list)
+		.post(users.requiresLogin, coaches.create);
 
-    // Finish by binding the article middleware
-    app.param('categoryId', coaches.coachByID);
+	app.route('/coaches/:coachId')
+		.get(coaches.read)
+		.put(users.requiresLogin, coaches.update)
+		.delete(users.requiresLogin, coaches.delete);
+
+	// Finish by binding the Coach middleware
+	app.param('coachId', coaches.coachByID);
 };

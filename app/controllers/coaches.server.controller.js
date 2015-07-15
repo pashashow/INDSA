@@ -13,8 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var coach = new Coach(req.body);
-	coach.firstName = req.firstName;
-	coach.lastName = req.lastName;
+	coach.user = req.user;
 
 	coach.save(function(err) {
 		if (err) {
@@ -22,24 +21,25 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(coach);
+			res.jsonp(coach);
 		}
 	});
 };
 
 /**
- * Show the current coach
+ * Show the current Coach
  */
 exports.read = function(req, res) {
-	res.json(req.coach);
+	res.jsonp(req.coach);
 };
 
 /**
- * Update a coach
+ * Update a Coach
  */
 exports.update = function(req, res) {
-	var coach = req.coach;
-	coach = _.extend(coach, req.body);
+	var coach = req.coach ;
+
+	coach = _.extend(coach , req.body);
 
 	coach.save(function(err) {
 		if (err) {
@@ -47,16 +47,16 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(coach);
+			res.jsonp(coach);
 		}
 	});
 };
 
 /**
- * Delete an coach
+ * Delete an Coach
  */
 exports.delete = function(req, res) {
-	var coach = req.coach;
+	var coach = req.coach ;
 
 	coach.remove(function(err) {
 		if (err) {
@@ -64,34 +64,34 @@ exports.delete = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(coach);
+			res.jsonp(coach);
 		}
 	});
 };
 
 /**
- * List of coachs
+ * List of Coaches
  */
-exports.list = function(req, res) {
+exports.list = function(req, res) { 
 	Coach.find().sort('-created').populate('user', 'displayName').exec(function(err, coaches) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(coaches);
+			res.jsonp(coaches);
 		}
 	});
 };
 
 /**
- * coach middleware
+ * Coach middleware
  */
-exports.coachByID = function(req, res, next, id) {
+exports.coachByID = function(req, res, next, id) { 
 	Coach.findById(id).populate('user', 'displayName').exec(function(err, coach) {
 		if (err) return next(err);
-		if (!coach) return next(new Error('Failed to load coach ' + id));
-		req.coach = coach;
+		if (! coach) return next(new Error('Failed to load Coach ' + id));
+		req.coach = coach ;
 		next();
 	});
 };
@@ -100,10 +100,8 @@ exports.coachByID = function(req, res, next, id) {
  * Coach authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.coach.id !== req.id) {
-		return res.status(403).send({
-			message: 'Coach is not authorized'
-		});
+	if (req.coach.user.id !== req.user.id) {
+		return res.status(403).send('User is not authorized');
 	}
 	next();
 };

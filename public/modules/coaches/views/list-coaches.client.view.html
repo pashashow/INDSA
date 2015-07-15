@@ -1,0 +1,19 @@
+<section data-ng-controller="CoachesController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Coaches</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="coach in coaches" data-ng-href="#!/coaches/{{coach._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Surname
+				<span data-ng-bind="coach.lastName"></span>
+				first name
+				<span data-ng-bind="coach.lastName"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="coach.lastName"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!coaches.$resolved || coaches.length">
+    	No Coaches yet, why don't you <a href="/#!/coaches/create">create one</a>?
+    </div>
+</section>
