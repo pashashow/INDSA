@@ -6,8 +6,8 @@
         <form name="dancerForm" class="form-horizontal" data-ng-submit="update(dancerForm.$valid)" novalidate>
             <fieldset>
                 <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.socialID.$invalid}">
-                    <label class="control-label" for="socialID">Social ID</label>
-                    <div class="controls">
+                    <label class="control-label col-lg-4" for="socialID">Social ID:</label>
+                    <div class="controls col-lg-8">
                         <input name="socialID" type="text" data-ng-model="dancer.socialID" id="socialID" class="form-control" required>
                     </div>
                     <div ng-show="submitted && danacerForm.socialID.$invalid" class="help-block">
@@ -15,30 +15,69 @@
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.firstName.$invalid}">
-                    <label class="control-label" for="firstName">First Name</label>
-                    <div class="controls">
-                        <input name="firstName" data-ng-model="dancer.firstName" id="firstName" class="form-control" required/>
+                    <label class="control-label col-lg-4" for="firstName">First Name:</label>
+                    <div class="controls col-lg-8">
+                        <input name="firstName" type="text" data-ng-model="dancer.firstName" id="firstName" class="form-control" required/>
                     </div>
                     <div ng-show="submitted && dancerForm.firstName.$invalid" class="help-block">
                         <p ng-show="dancerForm.firstName.$error.required" class="text-danger">First Name is required</p>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.lastName.$invalid}">
-                    <label class="control-label" for="lastName">Surname</label>
-                    <div class="controls">
-                        <input name="lastName" data-ng-model="dancer.lastName" id="lastName" class="form-control" required/>
+                    <label class="control-label col-lg-4" for="lastName">Surname:</label>
+                    <div class="controls col-lg-8">
+                        <input name="lastName" type="text" data-ng-model="dancer.lastName" id="lastName" class="form-control" required/>
                     </div>
                     <div ng-show="submitted && dancerForm.lastName.$invalid" class="help-block">
                         <p ng-show="dancerForm.lastName.$error.required" class="text-danger">Surname is required</p>
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.gender.$invalid}">
-                    <label class="control-label" for="lastName">Gender</label>
-                    <div class="controls">
-                        <input name="gender" data-ng-model="dancer.gender" id="gender" class="form-control" required/>
+                    <label class="control-label col-lg-4" for="lastName">Gender:</label>
+                    <div class="controls col-lg-8">
+                        <input name="gender" type="text" data-ng-model="dancer.gender" id="gender" class="form-control" required/>
                     </div>
                     <div ng-show="submitted && dancerForm.gender.$invalid" class="help-block">
                         <p ng-show="dancerForm.gender.$error.required" class="text-danger">Gender is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.dob.$invalid}">
+                    <label class="control-label col-lg-4" for="dob">DOB:</label>
+                    <div class="controls col-lg-8">
+                        <input type="date" id="dob" name="dob" data-ng-model="dancer.dob" class="form-control" required/>
+                    </div>
+                    <div ng-show="submitted && dancerForm.dob.$invalid" class="help-block">
+                        <p ng-show="dancerForm.dob.$error.required" class="text-danger">DOB is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.email.$invalid}">
+                    <label for="email" class="control-label col-lg-4">Email:</label>
+                    <div class="controls col-lg-8">
+                        <input type="email" id="email" name="email" data-ng-model="dancer.email" class="form-control">
+                    </div>
+                    <div ng-show="submitted && danacerForm.email.$invalid" class="help-block">
+                        <p ng-show="danacerForm.email.$error.required" class="text-danger">Email address is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.phone.$invalid}">
+                    <label class="control-label col-lg-4" for="phone">Phone:</label>
+                    <div class="controls col-lg-8">
+                        <input name="phone" type="tel" data-ng-model="dancer.phone" id="phone" class="form-control" required>
+                    </div>
+                    <div ng-show="submitted && danacerForm.phone.$invalid" class="help-block">
+                        <p ng-show="danacerForm.phone.$error.required" class="text-danger">Phone number is required</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="select" class="col-lg-4 control-label">Partner:</label>
+                    <div class="col-lg-8">
+                        <select class="form-control" id="select">
+                            <option>Dancer 1</option>
+                            <option>Dancer 2</option>
+                            <option>Dancer 3</option>
+                            <option>Dancer 4</option>
+                            <option>Dancer 5</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">

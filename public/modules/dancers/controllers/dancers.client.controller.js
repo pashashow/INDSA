@@ -14,7 +14,9 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 				lastName: this.lastName,
 				dob: this.dob,
 				gender: this.gender,
-				isPaid: true
+				isPaid: true,
+				email: this.email,
+				phone: this.phone
 			/*
                 	partner = req.partner
 			*/});
@@ -30,6 +32,8 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 				$scope.dob = '';
               	$scope.gender = '';
 				$scope.isPaid = '';
+				$scope.email = '';
+				$scope.phone = '';
 //              $scope.partner = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;

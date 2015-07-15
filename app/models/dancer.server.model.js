@@ -42,6 +42,16 @@ var DancerSchema   = new Schema({
         type: Boolean,
         default: false
     },
+    email: {
+        type: String,
+        default: '',
+        trim: true
+    },
+    phone: {
+        type: String,
+        default: '',
+        trim: true
+    },
     partner: {
         type: Schema.ObjectId,
         ref: 'Dancer' 

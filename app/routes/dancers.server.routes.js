@@ -12,8 +12,8 @@ module.exports = function(app) {
 
 	app.route('/dancers/:dancerId')
 		.get(dancers.read)
-		.put(dancers.update)
-		.delete(dancers.delete);
+		.put(users.requiresLogin,dancers.update)
+		.delete(users.requiresLogin,dancers.delete);
 
 	// Finish by binding the Dancer middleware
 	app.param('dancerId', dancers.dancerByID);
