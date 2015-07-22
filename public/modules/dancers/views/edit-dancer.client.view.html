@@ -68,21 +68,21 @@
                         <p ng-show="danacerForm.phone.$error.required" class="text-danger">Phone number is required</p>
                     </div>
                 </div>
+                <div class="form-group" >
+                    <label for="partnerCombo" class="col-lg-4 control-label">Partner:</label>
+                    <div class="controls col-lg-8" data-ng-init="find()">
+                        <select id="partnerCombo" name="partnerCombo" ng-model="dancer.partner"
+                                ng-options="partner._id as partner.lastName for partner in dancers" class="form-control" >
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group">
-                    <label class=" control-label col-lg-4" for="partner">Partner:</label>
+                    <label class=" control-label col-lg-4" for="partner">Partner ID:</label>
                     <small class="controls col-lg-8">
                         <em id="partner" class="text-muted">
                             <span data-ng-bind="dancer.partner"></span>
                         </em>
                     </small>
-<!--
-                    <div class="controls col-lg-8">
-                        <select id="partner" name="partner" ng-model="Dancers"
-                                ng-options="select as dancer.lastName for dancer in dancers" class="form-control" >
-                            <option value=""><span data-ng-bind="dancer.lastName"></span></option>
-                        </select>
-                    </div>
--->
                     <div ng-show="submitted && danacerForm.partner.$invalid" class="help-block">
                         <p ng-show="danacerForm.partner.$error.required" class="text-danger">Partner data is required</p>
                     </div>
@@ -91,6 +91,7 @@
                     <label class="control-label col-lg-4" for="isPaid">Paid:</label>
                     <div class="togglebutton">
                         <input type="checkbox" id="isPaid" data-ng-model="dancer.isPaid">
+                        <tt>Active({{dancer.isPaid}})</tt><br/>
                     </div>
                     <div ng-show="submitted && danacerForm.isPaid.$invalid" class="help-block">
                         <p ng-show="danacerForm.isPaid.$error.required" class="text-danger">Payment data is required</p>

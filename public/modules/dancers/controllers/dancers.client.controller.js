@@ -16,10 +16,9 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 				gender: this.gender,
 				isPaid: true,
 				email: this.email,
-				phone: this.phone
-			/*
-                	partner = req.partner
-			*/});
+				phone: this.phone,
+				partner: this.partner
+			});
 
 			// Redirect after save
 			dancer.$save(function(response) {
@@ -34,7 +33,7 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 				$scope.isPaid = '';
 				$scope.email = '';
 				$scope.phone = '';
-//              $scope.partner = '';
+                $scope.partner = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});

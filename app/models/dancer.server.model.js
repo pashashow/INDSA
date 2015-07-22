@@ -21,13 +21,13 @@ var DancerSchema   = new Schema({
         type: String,
         default: '',
         trim: true,
-        required: 'Please fill First Name field, it  cannot be blank'
+        required: 'Please fill First Name field, it cannot be blank'
     },
     lastName: {
         type: String,
         default: '',
         trim: true,
-        required: 'Please fill Surname field, it  cannot be blank'
+        required: 'Please fill Surname field, it cannot be blank'
     },
     dob: {
         type: Date
@@ -36,7 +36,7 @@ var DancerSchema   = new Schema({
         type: String,
         default: '',
         trim: true,
-        required: 'Please fill Gender field, it  cannot be blank'
+        required: 'Please fill Gender field, it cannot be blank'
     },
     isPaid: {
         type: Boolean,
@@ -54,7 +54,7 @@ var DancerSchema   = new Schema({
     },
     partner: {
         type: Schema.ObjectId,
-        ref: 'Dancer' 
+        ref: 'Dancer'
 	}/*,
 	user: {
 		type: Schema.ObjectId,
