@@ -1,26 +1,19 @@
-// app/routes/clubs.server.routs.js
-
 'use strict';
 
-/**
- * Module dependencies.
- */
-var clubs = require('../../app/controllers/clubs.server.controller');
-
-/**
- * Clubs API
- */
 module.exports = function(app) {
- 	// Routing logic   
-    app.route('/clubs')
-        .get(clubs.list)
-        .post(clubs.create);
+	var users = require('../../app/controllers/users.server.controller');
+	var clubs = require('../../app/controllers/clubs.server.controller');
 
-    app.route('/clubs/:clubId')
-        .get(clubs.read)
-        .put(clubs.update)
-        .delete(clubs.delete);
+	// Clubs Routes
+	app.route('/clubs')
+		.get(clubs.list)
+		.post(users.requiresLogin, clubs.create);
 
-    // Finish by binding the article middleware
-    app.param('clubId', clubs.clubByID);
+	app.route('/clubs/:clubId')
+		.get(clubs.read)
+		.put(users.requiresLogin, clubs.update)
+		.delete(users.requiresLogin, clubs.delete);
+
+	// Finish by binding the Club middleware
+	app.param('clubId', clubs.clubByID);
 };

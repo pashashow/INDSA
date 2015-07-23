@@ -29,8 +29,8 @@ describe('Club Model Unit Tests:', function() {
 
 		user.save(function() { 
 			club = new Club({
-				// Add model fields
-				// ...
+				name: 'Club Name',
+				user: user
 			});
 
 			done();
@@ -44,12 +44,21 @@ describe('Club Model Unit Tests:', function() {
 				done();
 			});
 		});
+
+		it('should be able to show an error when try to save without name', function(done) { 
+			club.name = '';
+
+			return club.save(function(err) {
+				should.exist(err);
+				done();
+			});
+		});
 	});
 
 	afterEach(function(done) { 
 		Club.remove().exec();
 		User.remove().exec();
-		
+
 		done();
 	});
 });

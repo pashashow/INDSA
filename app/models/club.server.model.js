@@ -1,5 +1,4 @@
 // app/models/club.server.model.js
-
 'use strict';
 
 /**
@@ -12,26 +11,30 @@ var mongoose = require('mongoose'),
  * Club Schema
  */
 var ClubSchema = new Schema({
-    name: {
-        type: String,
-        default: '',
-        trim: true,
-        required: 'Name cannot be blank'
-    },
-    address: {
-        type: String,
-        default: '',
-        
-        required: 'Address cannot be blank'
-    },
-    firstCoach: {
-        type: Schema.ObjectId,
-        ref: 'Coach'
-    },
-    secondCoach: {
-        type: Schema.ObjectId,
-        ref: 'Coach'
-    }
+	name: {
+		type: String,
+		default: '',
+		required: 'Please fill Club name, it  cannot be blank',
+		trim: true
+	},
+	address: {
+		type: String,
+		default: '',
+		trim: true
+	},
+	firstCoach: {
+		type: Schema.ObjectId,
+		ref: 'Coach'
+	},
+	secondCoach: {
+		type: Schema.ObjectId,
+		ref: 'Coach'
+	}/*,
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	}
+*/
 });
 
 mongoose.model('Club', ClubSchema);

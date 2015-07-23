@@ -13,10 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var club = new Club(req.body);
-	club.name = req.name;
-	club.address = req.address;
-	club.firstCoach = req.firstCoach;
-	club.secondCoach = req.secondCoach;
+	club.user = req.user;
 
 	club.save(function(err) {
 		if (err) {
@@ -24,7 +21,7 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(club);
+			res.jsonp(club);
 		}
 	});
 };
@@ -33,15 +30,16 @@ exports.create = function(req, res) {
  * Show the current Club
  */
 exports.read = function(req, res) {
-	res.json(req.club);
+	res.jsonp(req.club);
 };
 
 /**
  * Update a Club
  */
 exports.update = function(req, res) {
-	var club = req.club;
-	club = _.extend(club, req.body);
+	var club = req.club ;
+
+	club = _.extend(club , req.body);
 
 	club.save(function(err) {
 		if (err) {
@@ -49,7 +47,7 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(club);
+			res.jsonp(club);
 		}
 	});
 };
@@ -58,7 +56,7 @@ exports.update = function(req, res) {
  * Delete an Club
  */
 exports.delete = function(req, res) {
-	var club = req.club;
+	var club = req.club ;
 
 	club.remove(function(err) {
 		if (err) {
@@ -66,7 +64,7 @@ exports.delete = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(club);
+			res.jsonp(club);
 		}
 	});
 };
@@ -74,26 +72,26 @@ exports.delete = function(req, res) {
 /**
  * List of Clubs
  */
-exports.list = function(req, res) {
+exports.list = function(req, res) { 
 	Club.find().sort('-created').populate('user', 'displayName').exec(function(err, clubs) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(clubs);
+			res.jsonp(clubs);
 		}
 	});
 };
 
 /**
- * club middleware
+ * Club middleware
  */
-exports.clubByID = function(req, res, next, id) {
+exports.clubByID = function(req, res, next, id) { 
 	Club.findById(id).populate('user', 'displayName').exec(function(err, club) {
 		if (err) return next(err);
-		if (!club) return next(new Error('Failed to load club ' + id));
-		req.club = club;
+		if (! club) return next(new Error('Failed to load Club ' + id));
+		req.club = club ;
 		next();
 	});
 };
@@ -102,10 +100,8 @@ exports.clubByID = function(req, res, next, id) {
  * Club authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.club.id !== req.id) {
-		return res.status(403).send({
-			message: 'Club is not authorized'
-		});
+	if (req.club.user.id !== req.user.id) {
+		return res.status(403).send('User is not authorized');
 	}
 	next();
 };
