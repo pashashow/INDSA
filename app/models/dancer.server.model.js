@@ -29,6 +29,10 @@ var DancerSchema   = new Schema({
         trim: true,
         required: 'Please fill Surname field, it cannot be blank'
     },
+    category: {
+        type: Schema.ObjectId,
+        ref: 'Category'
+    },
     dob: {
         type: Date
     },
@@ -37,6 +41,10 @@ var DancerSchema   = new Schema({
         default: '',
         trim: true,
         required: 'Please fill Gender field, it cannot be blank'
+    },
+    points: {
+        type: Number,
+        default: 0
     },
     isPaid: {
         type: Boolean,

@@ -5,15 +5,6 @@
     <div class="col-md-4">
         <form name="dancerForm" class="form-horizontal" data-ng-submit="update(dancerForm.$valid)" novalidate>
             <fieldset>
-                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.socialID.$invalid}">
-                    <label class="control-label col-lg-4" for="socialID">Social ID:</label>
-                    <div class="controls col-lg-8">
-                        <input name="socialID" type="text" data-ng-model="dancer.socialID" id="socialID" class="form-control" required>
-                    </div>
-                    <div ng-show="submitted && dancerForm.socialID.$invalid" class="help-block">
-                        <p ng-show="dancerForm.socialID.$error.required" class="text-danger">Social ID is required</p>
-                    </div>
-                </div>
                 <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.firstName.$invalid}">
                     <label class="control-label col-lg-4" for="firstName">First Name:</label>
                     <div class="controls col-lg-8">
@@ -32,6 +23,17 @@
                         <p ng-show="dancerForm.lastName.$error.required" class="text-danger">Surname is required</p>
                     </div>
                 </div>
+                <div class="form-group" data-ng-controller="CategoriesController" data-ng-init="find()">
+                    <label for="category" class="control-label col-lg-4">Category:</label>
+                    <div class="controls col-lg-3">
+                        <select id="category" ng-model="$parent.dancer.category"
+                                ng-options="category._id as category.name for category in categories" class="form-control" >
+                        </select>
+                    </div>
+                    <div ng-show="submitted && dancerForm.category.$invalid" class="help-block">
+                        <p ng-show="dancerForm.category.$error.required" class="text-danger">Category is required</p>
+                    </div>
+                </div>
                 <div class="form-group" data-ng-controller="GendersController" data-ng-init="find()">
                     <label for="gender" class="control-label col-lg-4">Gender:</label>
                     <div class="controls col-lg-5">
@@ -44,10 +46,33 @@
                         <p ng-show="dancerForm.gender.$error.required" class="text-danger">Gender is required</p>
                     </div>
                 </div>
-                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.dob.$invalid}">
-                    <label class="control-label col-lg-4" for="dob">DOB:</label>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.points.$invalid }">
+                    <label class="control-label col-lg-4" for="points">Points:</label>
+                    <div class="controls col-lg-4">
+                        <input type="number" data-ng-model="dancer.points" class="form-control" id="points" name="points" />
+                    </div>
+                    <div ng-show="submitted && dancerForm.points.$invalid" class="help-block">
+                        <p ng-show="dancerForm.points.$error.required" class="text-danger">Points number is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.socialID.$invalid}">
+                    <label class="control-label col-lg-4" for="socialID">Social ID:</label>
                     <div class="controls col-lg-8">
-                        <input type="date" id="dob" name="dob" data-ng-model="dancer.dob" class="form-control" required/>
+                        <input name="socialID" type="text" data-ng-model="dancer.socialID" id="socialID" class="form-control" required>
+                    </div>
+                    <div ng-show="submitted && dancerForm.socialID.$invalid" class="help-block">
+                        <p ng-show="dancerForm.socialID.$error.required" class="text-danger">Social ID is required</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.dob.$invalid}">
+                    <label class="control-label col-lg-4" for="dob">Date of birth:</label>
+                    <div class="controls col-lg-6">
+                        <input type="date"  value="{{date | date:dd/MM/yyyy}}" data-ng-model="dancer.dob"
+                               name="dobInput" id="dob"
+                               data-date-format="dd/mm/yyyy"
+                               maxdate="todays" class="form-control"
+                               required calendar validatedateformat>
+                        </input>
                     </div>
                     <div ng-show="submitted && dancerForm.dob.$invalid" class="help-block">
                         <p ng-show="dancerForm.dob.$error.required" class="text-danger">DOB is required</p>
@@ -79,6 +104,7 @@
                         </select>
                     </div>
                 </div>
+<!--
                 <div class="form-group">
                     <label class=" control-label col-lg-4" for="partner">Partner ID:</label>
                     <small class="controls col-lg-8">
@@ -86,15 +112,13 @@
                             <span data-ng-bind="dancer.partner"></span>
                         </em>
                     </small>
-                    <div ng-show="submitted && dancerForm.partner.$invalid" class="help-block">
-                        <p ng-show="dancerForm.partner.$error.required" class="text-danger">Partner data is required</p>
-                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-lg-4" for="isPaid">Paid:</label>
+-->
+                <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.isPaid.$invalid}">
+                    <label class="control-label col-lg-4" for="isPaid">Active:</label>
                     <div class="togglebutton">
                         <input type="checkbox" id="isPaid" data-ng-model="dancer.isPaid">
-                        <tt>Active({{dancer.isPaid}})</tt><br/>
+<!--                        Active({{dancer.isPaid}})<br/> -->
                     </div>
                     <div ng-show="submitted && dancerForm.isPaid.$invalid" class="help-block">
                         <p ng-show="dancerForm.isPaid.$error.required" class="text-danger">Payment data is required</p>

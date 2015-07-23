@@ -12,9 +12,11 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 				socialID: this.socialID,
 				firstName: this.firstName,
 				lastName: this.lastName,
+				category: this.category,
 				dob: this.dob,
 				gender: this.gender,
 				isPaid: true,
+				points: this.points,
 				email: this.email,
 				phone: this.phone
 			});
@@ -29,8 +31,10 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
                	$scope.socialID = '';
                 $scope.firstName = '';
 				$scope.lastName = '';
+				$scope.category = '';
 				$scope.dob = '';
               	$scope.gender = '';
+				$scope.points = '';
 				$scope.isPaid = '';
 				$scope.email = '';
 				$scope.phone = '';
