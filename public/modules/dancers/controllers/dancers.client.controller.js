@@ -16,10 +16,11 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 				gender: this.gender,
 				isPaid: true,
 				email: this.email,
-				phone: this.phone,
-				partner: this.partner
+				phone: this.phone
 			});
 
+			if( this.partner != null)
+				dancer.partner = this.partner._id;
 			// Redirect after save
 			dancer.$save(function(response) {
 				$location.path('dancers/' + response._id);
