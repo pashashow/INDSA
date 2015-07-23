@@ -50,7 +50,7 @@
                     <label for="dob" class="control-label col-lg-4">Date of birth</label>
                     <div class="controls col-lg-6">
                         <input type="date"  value="{{date | date:dd/mm/yyyy}}" data-ng-model="dob"
-                               name="dobInput" id="dob"
+                               name="dobInput" id="dob" valueAsDate="{{dob.dateAsDate}}"
                                data-date-format="dd/mm/yyyy"
                                maxdate="todays" class="form-control"
                                required calendar validatedateformat>

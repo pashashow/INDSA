@@ -32,7 +32,6 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
                 $scope.firstName = '';
 				$scope.lastName = '';
 				$scope.category = '';
-				$scope.dob = '';
               	$scope.gender = '';
 				$scope.points = '';
 				$scope.isPaid = '';
