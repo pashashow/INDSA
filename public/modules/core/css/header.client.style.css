@@ -5,7 +5,7 @@ body {
 .logo{
     background: #FFFFFF;
     align-content: center;
-    margin: 0px;
+    margin: 0;
 }
 
 .logo-text{
@@ -36,7 +36,7 @@ body {
     }
     .navbar-nav {
         float: none!important;
-        margin: 7.5px -15px;
+        margin: 75px -15px;
     }
     .navbar-nav>li {
         float: none;
