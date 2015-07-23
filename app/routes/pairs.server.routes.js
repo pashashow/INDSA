@@ -1,26 +1,23 @@
-// app/routes/paires.server.routs.js
-
+// app/routes/pairs.server.routs.js
 'use strict';
 
 /**
- * Module dependencies.
- */
-var pairs = require('../../app/controllers/pairs.server.controller');
-
-/**
- * Coaches API
+ * Pair API.
  */
 module.exports = function(app) {
-    // Coaches Routes
-    app.route('/pairs')
-        .get(pairs.list)
-        .post(pairs.create);
+	var users = require('../../app/controllers/users.server.controller');
+	var pairs = require('../../app/controllers/pairs.server.controller');
 
-    app.route('/pairs/:pairId')
-        .get(pairs.read)
-        .put(pairs.update)
-        .delete(pairs.delete);
+	// Pairs Routes
+	app.route('/pairs')
+		.get(pairs.list)
+		.post(users.requiresLogin, pairs.create);
 
-    // Finish by binding the article middleware
-    app.param('categoryId', pairs.pairByID);
+	app.route('/pairs/:pairId')
+		.get(pairs.read)
+		.put(users.requiresLogin, pairs.update)
+		.delete(users.requiresLogin, pairs.delete);
+
+	// Finish by binding the Pair middleware
+	app.param('pairId', pairs.pairByID);
 };

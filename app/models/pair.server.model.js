@@ -1,34 +1,44 @@
-// app/models/pair.js
+// app/models/pair.sever.model.js
 'use strict';
 
-var mongoose     = require( 'mongoose' );
-var Schema       = mongoose.Schema;
+/**
+ * Module dependencies.
+ */
+var mongoose = require('mongoose'),
+	Schema = mongoose.Schema;
 
-var pairSchema   = new Schema({
-    firstPartner: 	{
-        type: Schema.ObjectId,
-        ref: 'Dancer'
-    },
-    secondPartner: {
-        type: Schema.ObjectId,
-        ref: 'Dancer'
-    },
-    club: {
-        type: Schema.ObjectId,
-        ref: 'Club'
-    },
-    ageGroup: {
-        type: Schema.ObjectId,
-        ref: 'AgeGroup'
-    },
-    category: {
-        type: Schema.ObjectId,
-        ref: 'Category'
-    },
-    isActive: 		Boolean,
-    points: 		Number,
-    rank: 			Number
+/**
+ * Pair Schema
+ */
+var PairSchema = new Schema({
+	firstPartner: 	{
+		type: Schema.ObjectId,
+		ref: 'Dancer'
+	},
+	secondPartner: {
+		type: Schema.ObjectId,
+		ref: 'Dancer'
+	},
+	club: {
+		type: Schema.ObjectId,
+		ref: 'Club'
+	},
+	ageGroup: {
+		type: Schema.ObjectId,
+		ref: 'AgeGroup'
+	},
+	category: {
+		type: Schema.ObjectId,
+		ref: 'Category'
+	},
+	isActive: 		Boolean,
+	points: 		Number,
+	rank: 			Number/*,
+	user: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	}
+*/
 });
 
-mongoose.model( 'Pair', pairSchema );
-
+mongoose.model('Pair', PairSchema);

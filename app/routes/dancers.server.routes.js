@@ -1,4 +1,4 @@
-// app/routes/dancers.js
+// app/routes/dancers.server.routs.js
 'use strict';
 
 module.exports = function(app) {

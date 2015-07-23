@@ -1,0 +1,22 @@
+<section data-ng-controller="PairsController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1 data-ng-bind="pair.name"></h1>
+	</div>
+	<div class="pull-right" data-ng-show="(authentication.user)">
+		<a class="btn btn-primary" href="/#!/pairs/{{pair._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+	<small>
+		<em class="text-muted">
+			Male partner
+			<span data-ng-bind="pair.firstPartner"></span>
+			<br>
+			Female partner
+			<span data-ng-bind="pair.secondPartner"></span>
+		</em>
+	</small>
+</section>
