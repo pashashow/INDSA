@@ -12,7 +12,8 @@ angular.module('clubs').controller('ClubsController', ['$scope', '$stateParams',
 				name: this.name,
 				address: this.address,
 				firstCoach: this.firstCoach._id,
-				secondCoach: this.secondCoach._id
+				secondCoach: this.secondCoach._id,
+				isActive: this.isActive
 			});
 
 			// Redirect after save

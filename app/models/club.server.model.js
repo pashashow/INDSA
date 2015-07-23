@@ -29,7 +29,11 @@ var ClubSchema = new Schema({
 	secondCoach: {
 		type: Schema.ObjectId,
 		ref: 'Coach'
-	}/*,
+	},
+    isActive: {
+        type: Boolean,
+        default: false
+    }/*,
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
