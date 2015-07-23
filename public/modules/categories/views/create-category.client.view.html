@@ -12,9 +12,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="name">Level</label>
+                    <label class="control-label" for="level">Level</label>
                     <div class="controls">
-                        <input type="text" data-ng-model="level" id="level" class="form-control" placeholder="level" required>
+                        <input type="number" data-ng-model="level" id="level" class="form-control" placeholder="level" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="isINDSA">INDSA:</label>
+                    <div class="togglebutton">
+                        <input type="checkbox" id="isINDSA" data-ng-model="isINDSA">
+                        Active({{isINDSA}})<br/>
                     </div>
                 </div>
                 <div class="form-group">
