@@ -1,26 +1,20 @@
 // app/routes/coaches.server.routs.js
-
 'use strict';
 
-/**
- * Module dependencies.
- */
-var couples = require('../../app/controllers/couples.server.controller');
-
-/**
- * Coaches API
- */
 module.exports = function(app) {
-    // Couples Routes
-    app.route('/couples')
-        .get(couples.list)
-        .post(couples.create);
+	var users = require('../../app/controllers/users.server.controller');
+	var couples = require('../../app/controllers/couples.server.controller');
 
-    app.route('/couples/:coupleId')
-        .get(couples.read)
-        .put(couples.update)
-        .delete(couples.delete);
+	// Couples Routes
+	app.route('/couples')
+		.get(couples.list)
+		.post(users.requiresLogin, couples.create);
 
-    // Finish by binding the article middleware
-    app.param('coupleId', couples.coupleByID);
+	app.route('/couples/:coupleId')
+		.get(couples.read)
+		.put(users.requiresLogin, couples.update)
+		.delete(users.requiresLogin, couples.delete);
+
+	// Finish by binding the Couple middleware
+	app.param('coupleId', couples.coupleByID);
 };

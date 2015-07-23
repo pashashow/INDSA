@@ -13,13 +13,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var couple = new Couple(req.body);
-	couple.pair = req.pair;
-	couple.agegroup = req.agegroup;
-	couple.category = req.category;
-	couple.number = req.number;
-	couple.place = req.place;
-	couple.points = req.points;
-	couple.rank = req.rank;
+	couple.user = req.user;
 
 	couple.save(function(err) {
 		if (err) {
@@ -27,24 +21,25 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(couple);
+			res.jsonp(couple);
 		}
 	});
 };
 
 /**
- * Show the current couple
+ * Show the current Couple
  */
 exports.read = function(req, res) {
-	res.json(req.couple);
+	res.jsonp(req.couple);
 };
 
 /**
- * Update a couple
+ * Update a Couple
  */
 exports.update = function(req, res) {
-	var couple = req.couple;
-	couple = _.extend(couple, req.body);
+	var couple = req.couple ;
+
+	couple = _.extend(couple , req.body);
 
 	couple.save(function(err) {
 		if (err) {
@@ -52,16 +47,16 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(couple);
+			res.jsonp(couple);
 		}
 	});
 };
 
 /**
- * Delete an couple
+ * Delete an Couple
  */
 exports.delete = function(req, res) {
-	var couple = req.couple;
+	var couple = req.couple ;
 
 	couple.remove(function(err) {
 		if (err) {
@@ -69,34 +64,34 @@ exports.delete = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(couple);
+			res.jsonp(couple);
 		}
 	});
 };
 
 /**
- * List of couples
+ * List of Couples
  */
-exports.list = function(req, res) {
+exports.list = function(req, res) { 
 	Couple.find().sort('-created').populate('user', 'displayName').exec(function(err, couples) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.json(couples);
+			res.jsonp(couples);
 		}
 	});
 };
 
 /**
- * couple middleware
+ * Couple middleware
  */
-exports.coupleByID = function(req, res, next, id) {
+exports.coupleByID = function(req, res, next, id) { 
 	Couple.findById(id).populate('user', 'displayName').exec(function(err, couple) {
 		if (err) return next(err);
-		if (!couple) return next(new Error('Failed to load couple ' + id));
-		req.couple = couple;
+		if (! couple) return next(new Error('Failed to load Couple ' + id));
+		req.couple = couple ;
 		next();
 	});
 };
@@ -105,10 +100,8 @@ exports.coupleByID = function(req, res, next, id) {
  * Couple authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.couple.id !== req.id) {
-		return res.status(403).send({
-			message: 'Couple is not authorized'
-		});
+	if (req.couple.user.id !== req.user.id) {
+		return res.status(403).send('User is not authorized');
 	}
 	next();
 };

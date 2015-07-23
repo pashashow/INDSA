@@ -1,0 +1,62 @@
+<section data-ng-controller="CouplesController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>Edit Couple</h1>
+    </div>
+    <div class="col-md-6">
+        <form name="coupleForm" class="form-horizontal" data-ng-submit="update()" novalidate>
+            <fieldset>
+                <div class="form-group" data-ng-controller="AgegroupsController" data-ng-init="find()">
+                    <label for="ageGroup" class="col-lg-4 control-label">Age Group:</label>
+                    <div class="controls col-lg-8">
+                        <select id="ageGroup" name="ageGroup" ng-model="$parent.couple.agegroup"
+                                ng-options="agegroup._id as agegroup.name for agegroup in agegroups" class="form-control" >
+                            <option value="">Choose Age Group</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" data-ng-controller="CategoriesController" data-ng-init="find()">
+                    <label for="category" class="col-lg-4 control-label">Category:</label>
+                    <div class="controls col-lg-8">
+                        <select id="category" name="category" ng-model="$parent.couple.category"
+                                ng-options="category._id as category.name for category in categories" class="form-control" >
+                            <option value="">Choose Category</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" data-ng-controller="ClubsController" data-ng-init="find()">
+                    <label for="club" class="col-lg-4 control-label">Club:</label>
+                    <div class="controls col-lg-8">
+                        <select id="club" name="club" ng-model="$parent.couple.club"
+                                ng-options="club._id as club.name for club in clubs" class="form-control" >
+                            <option value="">Choose Club</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': coupleForm.number.$dirty && coupleForm.number.$invalid }">
+                    <label class="control-label col-lg-4" for="number">Number:</label>
+                    <div class="controls col-lg-3">
+                        <input type="number" data-ng-model="couple.number" id="number" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': coupleForm.points.$dirty && coupleForm.points.$invalid }">
+                    <label class="control-label col-lg-4" for="points">Points:</label>
+                    <div class="controls col-lg-2">
+                        <input type="number" data-ng-model="couple.points" id="points" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': coupleForm.rank.$dirty && coupleForm.rank.$invalid }">
+                    <label class="control-label col-lg-4" for="rank">Rank:</label>
+                    <div class="controls col-lg-2">
+                        <input type="number" data-ng-model="couple.rank" id="rank" class="form-control" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-default">
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section>
