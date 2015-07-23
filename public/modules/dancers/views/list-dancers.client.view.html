@@ -14,12 +14,12 @@
                 <td class="col-lg-1"> <span data-ng-bind="dancer.gender"></span></td>
                 <td class="col-lg-3"> {{ dancer.dob | date: 'fullDate' }}</td>
                 <td>
-                    <i class="glyphicon glyphicon-ok"data-ng-show="(dancer.isPaid)"></i>
-                    <i class="glyphicon glyphicon-remove" data-ng-show="(!dancer.isPaid)"></i>
+                    <i class="glyphicon alert-success glyphicon-ok"  aria-hidden="true"data-ng-show="(dancer.isPaid)"></i>
+                    <i class="glyphicon alert-danger glyphicon-remove" aria-hidden="true" data-ng-show="(!dancer.isPaid)"></i>
                 </td>
                 <td>
-                    <i class="glyphicon glyphicon-ok" data-ng-show="(dancer.isPaid)"></i>
-                    <i class="glyphicon glyphicon-remove" data-ng-show="(!dancer.isPaid)"></i>
+                    <i class="glyphicon alert-success glyphicon-ok" data-ng-show="(dancer.isPaid)"></i>
+                    <i class="glyphicon alert-danger glyphicon-remove" data-ng-show="(!dancer.isPaid)"></i>
                 </td>
                 <td class="pull-right" data-ng-show="(authentication.user)">
                     <a class="btn btn-primary" href="/#!/dancers/{{dancer._id}}/edit">
