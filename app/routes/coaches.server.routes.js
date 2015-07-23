@@ -1,3 +1,4 @@
+// app/routes/coaches.server.routs.js
 'use strict';
 
 module.exports = function(app) {

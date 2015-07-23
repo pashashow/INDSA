@@ -1,5 +1,4 @@
-// app/routes/category.js
-
+// app/routes/categories.server.routs.js
 'use strict';
 
 /**
