@@ -1,0 +1,13 @@
+<section data-ng-controller="GendersController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Genders</h1>
+    </div>
+    <div class="list-group col-md-2">
+        <a data-ng-repeat="gender in genders" data-ng-href="#!/genders/{{gender._id}}" class="list-group-item">
+			<h4 class="list-group-item-heading" data-ng-bind="gender.name"></h4>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!genders.$resolved || genders.length">
+    	No Genders yet, why don't you <a href="/#!/genders/create">create one</a>?
+    </div>
+</section>
