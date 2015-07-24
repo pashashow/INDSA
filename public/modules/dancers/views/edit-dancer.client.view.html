@@ -26,7 +26,7 @@
                 <div class="form-group" data-ng-controller="CategoriesController" data-ng-init="find()">
                     <label for="category" class="control-label col-lg-4">Category:</label>
                     <div class="controls col-lg-3">
-                        <select id="category" ng-model="$parent.dancer.category"
+                        <select id="category" ng-model="$parent.dancer.category._id"
                                 ng-options="category._id as category.name for category in categories" class="form-control" >
                         </select>
                     </div>
@@ -57,8 +57,8 @@
                 </div>
                 <div class="form-group" ng-class="{ 'has-error' : submitted && dancerForm.socialID.$invalid}">
                     <label class="control-label col-lg-4" for="socialID">Social ID:</label>
-                    <div class="controls col-lg-8">
-                        <input name="socialID" type="text" data-ng-model="dancer.socialID" id="socialID" class="form-control" required>
+                    <div class="controls col-lg-5">
+                        <input name="socialID" type="text" maxlength="9" data-ng-model="dancer.socialID" id="socialID" class="form-control" required>
                     </div>
                     <div ng-show="submitted && dancerForm.socialID.$invalid" class="help-block">
                         <p ng-show="dancerForm.socialID.$error.required" class="text-danger">Social ID is required</p>

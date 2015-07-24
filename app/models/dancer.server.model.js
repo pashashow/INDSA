@@ -1,4 +1,4 @@
-// app/models/dancer.js
+// app/models/dancer.server.model.js
 'use strict';
 
 /**

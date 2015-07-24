@@ -79,7 +79,8 @@ exports.delete = function(req, res) {
  * List of Dancers
  */
 exports.list = function(req, res) { 
-	Dancer.find().sort('-created').populate('user', 'displayName').exec(function(err, dancers) {
+	Dancer.find()
+		.populate('category').exec(function(err, dancers) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -93,10 +94,17 @@ exports.list = function(req, res) {
 /**
  * Dancer middleware
  */
-exports.dancerByID = function(req, res, next, id) { 
-	Dancer.findById(id).populate('user', 'displayName').exec(function(err, dancer) {
-		if (err) return next(err);
-		if (! dancer) return next(new Error('Failed to load Dancer ' + id));
+exports.dancerByID = function(req, res, next, id) {
+	Dancer.findById(id).
+		populate('category').exec(function(err, dancer) {
+		if (err)
+			return next(err);
+
+		if (! dancer)
+			return next(new Error('Failed to load Dancer ' + id));
+
+		// prints "The dancer's category"
+		console.log('The dancer %s has category %s', dancer.lastName, dancer.category.name );
 		req.dancer = dancer ;
 		next();
 	});

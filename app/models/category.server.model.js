@@ -1,4 +1,4 @@
-// app/models/category.js
+// app/models/category.server.model.js
 'use strict';
 
 /**

@@ -2,17 +2,19 @@
     <div class="page-header">
         <h1>Dancers</h1>
         <table>
-            <th class="col-md-3">First Name</th>
-		    <th class="col-md-3">Surname</th>
+            <th class="col-md-2">First Name</th>
+		    <th class="col-md-2">Surname</th>
 		    <th class="col-md-1">Gender</th>
-		    <th class="col-lg-3">Date of birth</th>
+            <th class="col-md-1">Category</th>
+		    <th >DOB</th>
             <th>Active</th>
             <th>Paid</th>
             <tr data-ng-repeat="dancer in dancers" data-ng-href="#!/dancers/{{dancer._id}}" >
-                <td class="col-lg-3"> <span data-ng-bind="dancer.firstName"></span></td>
-                <td class="col-lg-3"> <span data-ng-bind="dancer.lastName"></span></td>
-                <td class="col-lg-1"> <span data-ng-bind="dancer.gender"></span></td>
-                <td class="col-lg-3"> {{ dancer.dob | date: 'fullDate' }}</td>
+                <td class="col-lg-2"> {{dancer.firstName}}></td>
+                <td class="col-lg-2"> {{dancer.lastName}}></td>
+                <td class="col-lg-1"> {{dancer.gender}}</td>
+                <td class="col-lg-1"> {{dancer.category.name}}</td>
+                <td>{{ dancer.dob | date: 'dd-MM-yyyy' }} </td>
                 <td>
                     <i class="glyphicon alert-success glyphicon-ok"  aria-hidden="true"data-ng-show="(dancer.isPaid)"></i>
                     <i class="glyphicon alert-danger glyphicon-remove" aria-hidden="true" data-ng-show="(!dancer.isPaid)"></i>
@@ -25,7 +27,7 @@
                     <a class="btn btn-primary" href="/#!/dancers/{{dancer._id}}/edit">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <a class="btn btn-primary" data-ng-click="remove();">
+                    <a class="btn btn-primary" data-ng-click="remove(dancer);">
                         <i class="glyphicon glyphicon-trash"></i>
                     </a>
                 </td>
