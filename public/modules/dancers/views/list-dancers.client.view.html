@@ -12,7 +12,7 @@
             <tr data-ng-repeat="dancer in dancers" data-ng-href="#!/dancers/{{dancer._id}}" >
                 <td class="col-lg-2"> {{dancer.firstName}}></td>
                 <td class="col-lg-2"> {{dancer.lastName}}></td>
-                <td class="col-lg-1"> {{dancer.gender}}</td>
+                <td class="col-lg-1"> {{dancer.gender.displayName}}</td>
                 <td class="col-lg-1"> {{dancer.category.name}}</td>
                 <td>{{ dancer.dob | date: 'dd-MM-yyyy' }} </td>
                 <td>

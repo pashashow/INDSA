@@ -29,7 +29,7 @@
                     <label for="gender" class="control-label col-lg-4">Gender:</label>
                     <div class="controls col-lg-5">
                         <select id="gender" ng-model="$parent.gender"
-                                ng-options="gender.name as gender.name for gender in genders" class="form-control" >
+                                ng-options="gender._id as gender.name for gender in genders" class="form-control" >
                             <option value="">Choose</option>
                         </select>
                     </div>

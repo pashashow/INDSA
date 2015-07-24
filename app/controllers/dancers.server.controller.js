@@ -80,7 +80,7 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) { 
 	Dancer.find()
-		.populate('category').exec(function(err, dancers) {
+		.populate('category gender').exec(function(err, dancers) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -95,16 +95,19 @@ exports.list = function(req, res) {
  * Dancer middleware
  */
 exports.dancerByID = function(req, res, next, id) {
-	Dancer.findById(id).
-		populate('category').exec(function(err, dancer) {
+	Dancer.findById(id)
+		.populate('category')
+		.populate('gender')
+		.exec(function(err, dancer) {
 		if (err)
 			return next(err);
 
 		if (! dancer)
 			return next(new Error('Failed to load Dancer ' + id));
 
-		// prints "The dancer's category"
-		console.log('The dancer %s has category %s', dancer.lastName, dancer.category.name );
+		// prints "The dancer's info"
+//		console.log('The dancer %s info: category %s, gender %s',
+//			dancer.lastName, dancer.category.name, dancer.gender._id );
 		req.dancer = dancer ;
 		next();
 	});

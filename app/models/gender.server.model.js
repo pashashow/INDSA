@@ -15,7 +15,13 @@ var GenderSchema = new Schema({
 		default: '',
 		required: 'Please fill Gender name',
 		trim: true
-	}/*,
+	},
+	 displayName: {
+	 type: String,
+	 default: '',
+	 required: 'Please fill Gender display name',
+	 trim: true
+	 }/*,
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'

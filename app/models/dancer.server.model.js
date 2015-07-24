@@ -37,10 +37,8 @@ var DancerSchema   = new Schema({
         type: Date
     },
     gender: {
-        type: String,
-        default: '',
-        trim: true,
-        required: 'Please fill Gender field, it cannot be blank'
+        type: Schema.ObjectId,
+        ref: 'Gender'
     },
     points: {
         type: Number,
