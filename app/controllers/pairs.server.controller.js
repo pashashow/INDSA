@@ -12,8 +12,19 @@ var mongoose = require('mongoose'),
  * Create a Pair
  */
 exports.create = function(req, res) {
+//	console.log('first name is %s', req.body.firstPartner._id);
+//	console.log('second name is %s', req.body.secondPartner._id);
+//	console.log('club name is %s', req.body.club._id);
+//	console.log('ageGroup name is %s', req.body.ageGroup._id);
+//	console.log('category name is %s', req.body.category._id);
+
 	var pair = new Pair(req.body);
 //	pair.user = req.user;
+//	pair.firstPartner = req.body.firstPartner._id;
+//	pair.secondPartner = req.body.secondPartner._id;
+//	pair.club = req.body.club._id;
+//	pair.ageGroup = req.body.ageGroup._id;
+//	pair.category = req.body.category._id;
 
 	pair.save(function(err) {
 		if (err) {
@@ -73,7 +84,13 @@ exports.delete = function(req, res) {
  * List of Pairs
  */
 exports.list = function(req, res) { 
-	Pair.find().sort('-created').populate('user', 'displayName').exec(function(err, pairs) {
+	Pair.find()
+		.populate('firstPartner')
+		.populate('secondPartner')
+		.populate('club')
+		.populate('ageGroup')
+		.populate('category')
+		.exec(function(err, pairs) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -88,9 +105,20 @@ exports.list = function(req, res) {
  * Pair middleware
  */
 exports.pairByID = function(req, res, next, id) { 
-	Pair.findById(id).populate('user', 'displayName').exec(function(err, pair) {
-		if (err) return next(err);
-		if (! pair) return next(new Error('Failed to load Pair ' + id));
+	Pair.findById(id)
+		.populate('firstPartner')
+		.populate('secondPartner')
+		.populate('club')
+		.populate('ageGroup')
+		.populate('category')
+		.exec(function(err, pair) {
+
+			if (err)
+				return next(err);
+
+			if (! pair)
+				return next(new Error('Failed to load Pair ' + id));
+
 		req.pair = pair ;
 		next();
 	});

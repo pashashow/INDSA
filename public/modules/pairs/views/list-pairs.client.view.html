@@ -3,16 +3,38 @@
         <h1>Pairs</h1>
     </div>
     <div class="list-group">
-        <a data-ng-repeat="pair in pairs" data-ng-href="#!/pairs/{{pair._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Male partner
-				<span data-ng-bind="pair.firstPartner"></span>
-                <br>
-				Female partner
-				<span data-ng-bind="pair.secondPartner"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="pair.name"></h4>
-        </a>
+        <table>
+            <th class="col-md-2">Partner (male)</th>
+            <th class="col-md-2">Partner (female)</th>
+            <th class="col-md-1">Age group</th>
+            <th class="col-md-1">Category</th>
+            <th >DOB</th>
+            <th >Active</th>
+            <th >Paid</th>
+            <tr data-ng-repeat="pair in pairs" data-ng-href="#!/pairs/{{pair._id}}" >
+                <td class="col-lg-2"> {{pair.firstPartner.firstName }} {{pair.firstPartner.lastName }}></td>
+                <td class="col-lg-2"> {{pair.secondPartner.firstName }} {{pair.secondPartner.lastName }}></td>
+                <td class="col-lg-1"> {{pair.ageGroup.name}}</td>
+                <td class="col-lg-1"> {{pair.category.name}}</td>
+                <td></td>
+                <td>
+                    <i class="glyphicon alert-success glyphicon-ok"  aria-hidden="true"data-ng-show="(pair.isActive)"></i>
+                    <i class="glyphicon alert-danger glyphicon-remove" aria-hidden="true" data-ng-show="(!pair.isActive)"></i>
+                </td>
+                <td>
+                    <i class="glyphicon alert-success glyphicon-ok" data-ng-show="(pair.isActive)"></i>
+                    <i class="glyphicon alert-danger glyphicon-remove" data-ng-show="(!pair.isActive)"></i>
+                </td>
+                <td class="pull-right" data-ng-show="(authentication.user)">
+                    <a class="btn btn-primary" href="/#!/pairs/{{pair._id}}/edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a class="btn btn-primary" data-ng-click="remove(pair);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!pairs.$resolved || pairs.length">
     	No Pairs yet, why don't you <a href="/#!/pairs/create">create one</a>?

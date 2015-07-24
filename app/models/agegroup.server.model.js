@@ -7,13 +7,13 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 /**
- * Agegroup Schema
+ * AgeGroup Schema
  */
-var AgegroupSchema = new Schema({
+var AgeGroupSchema = new Schema({
 	name: {
 		type: String,
 		default: '',
-		required: 'Please fill Agegroup name, it cannot be blank',
+		required: 'Please fill AgeGroup name, it cannot be blank',
 		trim: true
 	},
     level: {
@@ -31,4 +31,4 @@ var AgegroupSchema = new Schema({
 */
 });
 
-mongoose.model('Agegroup', AgegroupSchema);
+mongoose.model('AgeGroup', AgeGroupSchema);

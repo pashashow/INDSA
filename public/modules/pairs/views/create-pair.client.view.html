@@ -8,7 +8,7 @@
                 <div class="form-group" data-ng-controller="DancersController" data-ng-init="find()">
                     <label for="firstPartner" class="col-lg-4 control-label">Mail Partner:</label>
                     <div class="controls col-lg-8">
-                        <select id="firstPartner" name="firstPartner" ng-model="$parent.firstPartner"
+                        <select id="firstPartner" name="firstPartner" ng-model="$parent.firstPartner._id"
                                 ng-options="dancer._id as dancer.lastName for dancer in dancers" class="form-control" >
                             <option value="">Choose male partner</option>
                         </select>
@@ -17,7 +17,7 @@
                 <div class="form-group" data-ng-controller="DancersController" data-ng-init="find()">
                     <label for="secondPartner" class="col-lg-4 control-label">Femail Partner:</label>
                     <div class="controls col-lg-8">
-                        <select id="secondPartner" name="secondPartner" ng-model="$parent.secondPartner"
+                        <select id="secondPartner" name="secondPartner" ng-model="$parent.secondPartner._id"
                                 ng-options="dancer._id as dancer.lastName for dancer in dancers" class="form-control" >
                             <option value="">Choose female partner</option>
                         </select>
@@ -26,7 +26,7 @@
                 <div class="form-group" data-ng-controller="ClubsController" data-ng-init="find()">
                     <label for="club" class="col-lg-4 control-label">Club:</label>
                     <div class="controls col-lg-8">
-                        <select id="club" name="club" ng-model="$parent.club"
+                        <select id="club" name="club" ng-model="$parent.club._id"
                                 ng-options="club._id as club.name for club in clubs" class="form-control" >
                             <option value="">Choose club</option>
                         </select>
@@ -35,7 +35,7 @@
                 <div class="form-group" data-ng-controller="AgegroupsController" data-ng-init="find()">
                     <label for="ageGroup" class="col-lg-4 control-label">Age Group:</label>
                     <div class="controls col-lg-8">
-                        <select id="ageGroup" name="ageGroup" ng-model="$parent.ageGroup"
+                        <select id="ageGroup" name="ageGroup" ng-model="$parent.ageGroup._id"
                                 ng-options="agegroup._id as agegroup.name for agegroup in agegroups" class="form-control" >
                             <option value="">Choose Age Group</option>
                         </select>
@@ -44,7 +44,7 @@
                 <div class="form-group" data-ng-controller="CategoriesController" data-ng-init="find()">
                     <label for="category" class="col-lg-4 control-label">Category:</label>
                     <div class="controls col-lg-8">
-                        <select id="category" name="category" ng-model="$parent.category"
+                        <select id="category" name="category" ng-model="$parent.category._id"
                                 ng-options="category._id as category.name for category in categories" class="form-control" >
                             <option value="">Choose Category</option>
                         </select>

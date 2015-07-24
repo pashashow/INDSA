@@ -5,14 +5,14 @@
  */
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
-	Agegroup = mongoose.model('Agegroup'),
+	AgeGroup = mongoose.model('AgeGroup'),
 	_ = require('lodash');
 
 /**
- * Create a Agegroup
+ * Create a AgeGroup
  */
 exports.create = function(req, res) {
-	var agegroup = new Agegroup(req.body);
+	var agegroup = new AgeGroup(req.body);
 	agegroup.user = req.user;
 
 	agegroup.save(function(err) {
@@ -27,14 +27,14 @@ exports.create = function(req, res) {
 };
 
 /**
- * Show the current Agegroup
+ * Show the current AgeGroup
  */
 exports.read = function(req, res) {
 	res.jsonp(req.agegroup);
 };
 
 /**
- * Update a Agegroup
+ * Update a AgeGroup
  */
 exports.update = function(req, res) {
 	var agegroup = req.agegroup ;
@@ -53,7 +53,7 @@ exports.update = function(req, res) {
 };
 
 /**
- * Delete an Agegroup
+ * Delete an AgeGroup
  */
 exports.delete = function(req, res) {
 	var agegroup = req.agegroup ;
@@ -72,8 +72,8 @@ exports.delete = function(req, res) {
 /**
  * List of Agegroups
  */
-exports.list = function(req, res) { 
-	Agegroup.find().sort('-created').populate('user', 'displayName').exec(function(err, agegroups) {
+exports.list = function(req, res) {
+	AgeGroup.find().sort('-created').populate('user', 'displayName').exec(function(err, agegroups) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -87,8 +87,8 @@ exports.list = function(req, res) {
 /**
  * Agegroup middleware
  */
-exports.agegroupByID = function(req, res, next, id) { 
-	Agegroup.findById(id).populate('user', 'displayName').exec(function(err, agegroup) {
+exports.agegroupByID = function(req, res, next, id) {
+	AgeGroup.findById(id).populate('user', 'displayName').exec(function(err, agegroup) {
 		if (err) return next(err);
 		if (! agegroup) return next(new Error('Failed to load Agegroup ' + id));
 		req.agegroup = agegroup ;
