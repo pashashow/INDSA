@@ -12,10 +12,10 @@
             <th >Active</th>
             <th >Paid</th>
             <tr data-ng-repeat="pair in pairs" data-ng-href="#!/pairs/{{pair._id}}" >
-                <td class="col-lg-2"> {{pair.firstPartner.firstName }} {{pair.firstPartner.lastName }}></td>
-                <td class="col-lg-2"> {{pair.secondPartner.firstName }} {{pair.secondPartner.lastName }}></td>
-                <td class="col-lg-1"> {{pair.ageGroup.name}}</td>
-                <td class="col-lg-1"> {{pair.category.name}}</td>
+                <td class="col-lg-2"> {{pair.firstPartner.firstName }} {{pair.firstPartner.lastName }}</td>
+                <td class="col-lg-2"> {{pair.secondPartner.firstName }} {{pair.secondPartner.lastName }}</td>
+                <td class="col-md-1"> {{pair.ageGroup.name}}</td>
+                <td class="col-md-1"> {{pair.category.name}}</td>
                 <td></td>
                 <td>
                     <i class="glyphicon alert-success glyphicon-ok"  aria-hidden="true"data-ng-show="(pair.isActive)"></i>
