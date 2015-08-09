@@ -13,13 +13,13 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var dancer = new Dancer(req.body);
-//	dancer.socialID = req.socialID;
-//	dancer.firstName = req.firstName;
-//	dancer.lastName = req.lastName;
-//	dancer.dob = req.dob;
-//	dancer.isPaid = req.isPaid;
-//	dancer.partner = req.partner;
-//	dancer.user = req.user;
+//	dancer.socialID = req.body.socialID;
+//	dancer.firstName = req.body.firstName;
+//	dancer.lastName = req.body.lastName;
+//	dancer.dob = req.body.dob;
+//	dancer.isPaid = req.body.isPaid;
+//	dancer.partner = req.body.partner;
+//	dancer.user = req.body.user;
 
 	dancer.save(function(err) {
 		if (err) {
@@ -80,7 +80,9 @@ exports.delete = function(req, res) {
  */
 exports.list = function(req, res) { 
 	Dancer.find()
-		.populate('category gender').exec(function(err, dancers) {
+		.sort('lastName')
+		.populate('category gender')
+		.exec(function(err, dancers) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -89,6 +91,44 @@ exports.list = function(req, res) {
 			res.jsonp(dancers);
 		}
 	});
+};
+
+exports.listMale = function(req, res) {
+	Dancer.find()
+		.sort('lastName')
+		.populate('category gender')
+		.exec(function(err, dancers) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				var men = dancers.filter(function(doc){
+				if(doc.gender.name == 'Male')
+					return doc;
+			});
+				res.jsonp(men);
+			}
+		});
+};
+
+exports.listFemale = function(req, res) {
+	Dancer.find()
+		.sort('lastName')
+		.populate('category gender')
+		.exec(function(err, dancers) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				var women = dancers.filter(function(doc){
+					if(doc.gender.name == 'Female')
+						return doc;
+				});
+				res.jsonp(women);
+			}
+		});
 };
 
 /**

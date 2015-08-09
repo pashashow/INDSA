@@ -10,6 +10,12 @@ module.exports = function(app) {
 		.get(dancers.list)
 		.post(users.requiresLogin, dancers.create);
 
+	app.route('/mdancers')
+		.get(dancers.listMale);
+
+	app.route('/fdancers')
+		.get(dancers.listFemale);
+
 	app.route('/dancers/:dancerId')
 		.get(dancers.read)
 		.put(users.requiresLogin,dancers.update)
