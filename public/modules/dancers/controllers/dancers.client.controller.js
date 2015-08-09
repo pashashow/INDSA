@@ -1,8 +1,10 @@
 'use strict';
 
 // Dancers controller
-angular.module('dancers').controller('DancersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Dancers',
-	function($scope, $stateParams, $location, Authentication, Dancers) {
+angular.module('dancers')
+	.controller('DancersController',
+	['$scope', '$stateParams', '$location', 'Authentication', 'Partners', 'Dancers',
+	function($scope, $stateParams, $location, Authentication, Partners, Dancers) {
 		$scope.authentication = Authentication;
 
 		// Create new Dancer
@@ -82,5 +84,23 @@ angular.module('dancers').controller('DancersController', ['$scope', '$statePara
 				dancerId: $stateParams.dancerId
 			});
 		};
+
+		// List of Female Partner
+		$scope.femalePartner = {};
+		Partners.femalePartner()
+			.then(function (components) {
+				$scope.femalePartner = components;
+			}, function (error) {
+				console.error(error);
+			});
+
+		// List of Female Partner
+		$scope.malePartner = {};
+		Partners.malePartner()
+			.then(function (components) {
+				$scope.malePartner = components;
+			}, function (error) {
+				console.error(error);
+			});
 	}
 ]);
