@@ -78,7 +78,7 @@ exports.delete = function (req, res) {
 /**
  * List of Dancers
  */
-exports.list = function (req, res) { 
+exports.list = function (req, res) {
 	Dancer.find()
         .sort('lastName')
         .populate('category')
@@ -155,9 +155,9 @@ exports.dancerByID = function (req, res, next, id) {
 		// prints "The dancer's info"
 //		console.log('The dancer %s info: category %s, gender %s',
 //		dancer.lastName, dancer.category.name, dancer.gender._id );
-		req.dancer = dancer;
-		next();
-	});
+            req.dancer = dancer;
+            next();
+        });
 };
 
 /**

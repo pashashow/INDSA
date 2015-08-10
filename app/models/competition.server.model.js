@@ -17,5 +17,5 @@ var CompetitionSchema   = new Schema({
 		ref: 'Union' }]
 });
 
-module.exports = mongoose.model('Competition', CompetitionSchema );
+module.exports = mongoose.model('Competition', CompetitionSchema);
 

@@ -11,14 +11,14 @@ var mongoose = require('mongoose'),
 /**
  * Create a Competition
  */
-exports.create = function(req, res) {
+exports.create = function (req, res) {
 	var competition = new Competition(req.body);
 	competition.domesticClub = req.domesticClub;
 	competition.isRanking = req.isRanking;
 	competition.date = req.date;
 	competition.unions = req.unions;
 
-	competition.save(function(err) {
+	competition.save(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -33,18 +33,18 @@ exports.create = function(req, res) {
  * Show the current competition
  */
 
-exports.read = function(req, res) {
+exports.read = function (req, res) {
 	res.json(req.competition);
 };
 
 /**
  * Update a competition
  */
-exports.update = function(req, res) {
+exports.update = function (req, res) {
 	var competition = req.competition;
 	competition = _.extend(competition, req.body);
 
-	competition.save(function(err) {
+	competition.save(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -58,10 +58,10 @@ exports.update = function(req, res) {
 /**
  * Delete an competition
  */
-exports.delete = function(req, res) {
+exports.delete = function (req, res) {
 	var competition = req.competition;
 
-	competition.remove(function(err) {
+	competition.remove(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -75,8 +75,8 @@ exports.delete = function(req, res) {
 /**
  * List of competitions
  */
-exports.list = function(req, res) {
-	Competition.find().sort('-created').populate('user', 'displayName').exec(function(err, competitiones) {
+exports.list = function (req, res) {
+	Competition.find().sort('-created').populate('user', 'displayName').exec(function (err, competitiones) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -90,10 +90,14 @@ exports.list = function(req, res) {
 /**
  * competition middleware
  */
-exports.competitionByID = function(req, res, next, id) {
-	Competition.findById(id).populate('user', 'displayName').exec(function(err, competition) {
-		if (err) return next(err);
-		if (!competition) return next(new Error('Failed to load competition ' + id));
+exports.competitionByID = function (req, res, next, id) {
+	Competition.findById(id).populate('user', 'displayName').exec(function (err, competition) {
+		if (err) {
+            return next(err);
+        }
+		if (!competition) {
+            return next(new Error('Failed to load competition ' + id));
+        }
 		req.competition = competition;
 		next();
 	});
@@ -102,7 +106,7 @@ exports.competitionByID = function(req, res, next, id) {
 /**
  * Competition authorization middleware
  */
-exports.hasAuthorization = function(req, res, next) {
+exports.hasAuthorization = function (req, res, next) {
 	if (req.competition.id !== req.id) {
 		return res.status(403).send({
 			message: 'Competition is not authorized'

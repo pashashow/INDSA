@@ -11,11 +11,11 @@ var mongoose = require('mongoose'),
 /**
  * Create a Club
  */
-exports.create = function(req, res) {
+exports.create = function (req, res) {
 	var club = new Club(req.body);
 	club.user = req.user;
 
-	club.save(function(err) {
+	club.save(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -29,19 +29,19 @@ exports.create = function(req, res) {
 /**
  * Show the current Club
  */
-exports.read = function(req, res) {
+exports.read = function (req, res) {
 	res.jsonp(req.club);
 };
 
 /**
  * Update a Club
  */
-exports.update = function(req, res) {
-	var club = req.club ;
+exports.update = function (req, res) {
+	var club = req.club;
 
-	club = _.extend(club , req.body);
+	club = _.extend(club, req.body);
 
-	club.save(function(err) {
+	club.save(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -55,10 +55,10 @@ exports.update = function(req, res) {
 /**
  * Delete an Club
  */
-exports.delete = function(req, res) {
-	var club = req.club ;
+exports.delete = function (req, res) {
+	var club = req.club;
 
-	club.remove(function(err) {
+	club.remove(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -72,8 +72,8 @@ exports.delete = function(req, res) {
 /**
  * List of Clubs
  */
-exports.list = function(req, res) { 
-	Club.find().sort('-created').populate('user', 'displayName').exec(function(err, clubs) {
+exports.list = function (req, res) {
+	Club.find().sort('-created').populate('user', 'displayName').exec(function (err, clubs) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -87,11 +87,15 @@ exports.list = function(req, res) {
 /**
  * Club middleware
  */
-exports.clubByID = function(req, res, next, id) { 
-	Club.findById(id).populate('user', 'displayName').exec(function(err, club) {
-		if (err) return next(err);
-		if (! club) return next(new Error('Failed to load Club ' + id));
-		req.club = club ;
+exports.clubByID = function (req, res, next, id) {
+	Club.findById(id).populate('user', 'displayName').exec(function (err, club) {
+		if (err) {
+            return next(err);
+        }
+		if (!club) {
+            return next(new Error('Failed to load Club ' + id));
+        }
+		req.club = club;
 		next();
 	});
 };
@@ -99,7 +103,7 @@ exports.clubByID = function(req, res, next, id) {
 /**
  * Club authorization middleware
  */
-exports.hasAuthorization = function(req, res, next) {
+exports.hasAuthorization = function (req, res, next) {
 	if (req.club.user.id !== req.user.id) {
 		return res.status(403).send('User is not authorized');
 	}
