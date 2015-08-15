@@ -104,8 +104,9 @@ exports.listMale = function(req, res) {
 				});
 			} else {
 				var men = dancers.filter(function(doc){
-				if(doc.gender.name == 'Male')
+				if(doc.gender.name == 'Male') {
 					return doc;
+				}
 			});
 				res.jsonp(men);
 			}
@@ -123,8 +124,9 @@ exports.listFemale = function(req, res) {
 				});
 			} else {
 				var women = dancers.filter(function(doc){
-					if(doc.gender.name == 'Female')
+					if(doc.gender.name == 'Female') {
 						return doc;
+					}
 				});
 				res.jsonp(women);
 			}

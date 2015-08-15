@@ -5,20 +5,20 @@
     <div class="col-md-6">
         <form class="form-horizontal" data-ng-submit="update()" novalidate>
             <fieldset>
-                <div class="form-group" data-ng-controller="DancersController" data-ng-init="find()">
+                <div class="form-group" data-ng-controller="DancersController">
                     <label for="firstPartner" class="col-lg-4 control-label">Mail Partner:</label>
                     <div class="controls col-lg-6">
                         <select id="firstPartner" name="firstPartner" ng-model="$parent.pair.firstPartner._id"
-                                ng-options="dancer._id as dancer.lastName for dancer in dancers" class="form-control" >
+                                ng-options="dancer._id as dancer.lastName for dancer in malePartner" class="form-control" >
                             <option value="">Choose male partner</option>
                         </select>
                     </div>
                 </div>
-                <div class="form-group" data-ng-controller="DancersController" data-ng-init="find()">
+                <div class="form-group" data-ng-controller="DancersController">
                     <label for="secondPartner" class="col-lg-4 control-label">Femail Partner:</label>
                     <div class="controls col-lg-6">
                         <select id="secondPartner" name="secondPartner" ng-model="$parent.pair.secondPartner._id"
-                                ng-options="dancer._id as dancer.lastName for dancer in dancers" class="form-control" >
+                                ng-options="dancer._id as dancer.lastName for dancer in femalePartner" class="form-control" >
                             <option value="">Choose female partner</option>
                         </select>
                     </div>

@@ -12,14 +12,14 @@ var mongoose = require('mongoose'),
  * Create a Pair
  */
 exports.create = function(req, res) {
-//	console.log('first name is %s', req.body.firstPartner._id);
-//	console.log('second name is %s', req.body.secondPartner._id);
-//	console.log('club name is %s', req.body.club._id);
-//	console.log('ageGroup name is %s', req.body.ageGroup._id);
-//	console.log('category name is %s', req.body.category._id);
+	console.log('first partner ID is %s', req.body.firstPartner._id);
+	console.log('second partner ID is %s', req.body.secondPartner._id);
+	console.log('club ID is %s', req.body.club._id);
+	console.log('ageGroup ID is %s', req.body.ageGroup._id);
+	console.log('category ID is %s', req.body.category._id);
 
 	var pair = new Pair(req.body);
-//	pair.user = req.user;
+//	pair.user = req.body.user;
 //	pair.firstPartner = req.body.firstPartner._id;
 //	pair.secondPartner = req.body.secondPartner._id;
 //	pair.club = req.body.club._id;
@@ -51,6 +51,12 @@ exports.update = function(req, res) {
 	var pair = req.pair ;
 
 	pair = _.extend(pair , req.body);
+
+	console.log('first partner ID is %s', req.pair.firstPartner._id);
+	console.log('second partner ID is %s', req.pair.secondPartner._id);
+	console.log('club ID is %s', req.pair.club._id);
+	console.log('ageGroup ID is %s', req.pair.ageGroup._id);
+	console.log('category ID is %s', req.pair.category._id);
 
 	pair.save(function(err) {
 		if (err) {

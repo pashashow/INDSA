@@ -14,9 +14,9 @@ angular.module('pairs').controller('PairsController', ['$scope', '$stateParams',
 				club: 			this.club,
 				ageGroup: 		this.ageGroup,
 				category: 		this.category,
-				isActive: 		this.isActive,
-				points: 		this.points,
-				rank: 			this.rank
+				isActive: 		false,
+				points: 		0,
+				rank: 			0
 			});
 
 			// Redirect after save
