@@ -11,11 +11,11 @@ var mongoose = require('mongoose'),
 /**
  * Create a AgeGroup
  */
-exports.create = function(req, res) {
+exports.create = function (req, res) {
 	var agegroup = new AgeGroup(req.body);
 	agegroup.user = req.user;
 
-	agegroup.save(function(err) {
+	agegroup.save(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -29,19 +29,19 @@ exports.create = function(req, res) {
 /**
  * Show the current AgeGroup
  */
-exports.read = function(req, res) {
+exports.read = function (req, res) {
 	res.jsonp(req.agegroup);
 };
 
 /**
  * Update a AgeGroup
  */
-exports.update = function(req, res) {
-	var agegroup = req.agegroup ;
+exports.update = function (req, res) {
+	var agegroup = req.agegroup;
 
-	agegroup = _.extend(agegroup , req.body);
+	agegroup = _.extend(agegroup, req.body);
 
-	agegroup.save(function(err) {
+	agegroup.save(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -55,10 +55,10 @@ exports.update = function(req, res) {
 /**
  * Delete an AgeGroup
  */
-exports.delete = function(req, res) {
-	var agegroup = req.agegroup ;
+exports.delete = function (req, res) {
+	var agegroup = req.agegroup;
 
-	agegroup.remove(function(err) {
+	agegroup.remove(function (err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -72,8 +72,8 @@ exports.delete = function(req, res) {
 /**
  * List of Agegroups
  */
-exports.list = function(req, res) {
-	AgeGroup.find().sort('-created').populate('user', 'displayName').exec(function(err, agegroups) {
+exports.list = function (req, res) {
+	AgeGroup.find().sort('-created').populate('user', 'displayName').exec(function (err, agegroups) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -87,11 +87,15 @@ exports.list = function(req, res) {
 /**
  * Agegroup middleware
  */
-exports.agegroupByID = function(req, res, next, id) {
-	AgeGroup.findById(id).populate('user', 'displayName').exec(function(err, agegroup) {
-		if (err) return next(err);
-		if (! agegroup) return next(new Error('Failed to load Agegroup ' + id));
-		req.agegroup = agegroup ;
+exports.agegroupByID = function (req, res, next, id) {
+	AgeGroup.findById(id).populate('user', 'displayName').exec(function (err, agegroup) {
+		if (err) {
+            return next(err);
+        }
+		if (!agegroup) {
+            return next(new Error('Failed to load Agegroup ' + id));
+        }
+		req.agegroup = agegroup;
 		next();
 	});
 };
@@ -99,7 +103,7 @@ exports.agegroupByID = function(req, res, next, id) {
 /**
  * Agegroup authorization middleware
  */
-exports.hasAuthorization = function(req, res, next) {
+exports.hasAuthorization = function (req, res, next) {
 	if (req.agegroup.user.id !== req.user.id) {
 		return res.status(403).send('User is not authorized');
 	}
