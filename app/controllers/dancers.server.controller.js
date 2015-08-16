@@ -98,19 +98,19 @@ exports.listMale = function (req, res) {
 	Dancer.find()
 		.sort('lastName')
 //		.populate('category')
-//		.populate('gender')
+		.populate('gender')
 		.exec(function (err, dancers) {
 			if (err) {
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
 				});
 			} else {
-//				var men = dancers.filter(function (doc) {
-//                    if (doc.gender.name === 'Male') {
-//                        return doc;
-//                    }
-//			    });
-				res.jsonp(res);
+				var men = dancers.filter(function (doc) {
+                    if (doc.gender.name === 'Male') {
+                        return doc;
+                    }
+			    });
+				res.jsonp(men);
 			}
 		});
 };
@@ -119,19 +119,19 @@ exports.listFemale = function (req, res) {
 	Dancer.find()
 		.sort('lastName')
 //		.populate('category')
-//		.populate('gender')
+		.populate('gender')
 		.exec(function (err, dancers) {
 			if (err) {
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
 				});
 			} else {
-//				var women = dancers.filter(function (doc) {
-//					if (doc.gender.name === 'Female') {
-//						return doc;
-//                    }
-//				});
-				res.jsonp(res);
+				var women = dancers.filter(function (doc) {
+					if (doc.gender.name === 'Female') {
+						return doc;
+                    }
+				});
+				res.jsonp(women);
 			}
 		});
 };

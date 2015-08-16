@@ -106,11 +106,11 @@ exports.list = function (req, res) {
  */
 exports.pairByID = function (req, res, next, id) {
 	Pair.findById(id)
-		.populate('firstPartner')
-		.populate('secondPartner')
-		.populate('club')
-		.populate('ageGroup')
-		.populate('category')
+//		.populate('firstPartner')
+//		.populate('secondPartner')
+//		.populate('club')
+//		.populate('ageGroup')
+//		.populate('category')
 		.exec(function (err, pair) {
 
 			if (err) {
